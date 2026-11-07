@@ -1,0 +1,1343 @@
+<title>Cartas de Dices & Tokens</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;800&display=swap">
+<style>
+/* Layout: a sticky class bar over one section per pool; each section a grid of
+   cards — each one its rules text, where every status and keyword explains
+   itself on hover or tap, as in the game. No images: build.py needs no Godot.
+   Look: the game's «juguete esmaltado» — flat fills, a 3 px ink outline, a solid
+   shadow pushed straight down with no blur, rounded corners, paper background.
+   Every colour is copied from scripts/ui/ui_theme.gd (INK, PAPER, PANEL, CREAM,
+   MUTED, CLASS) and hand_card.gd (ESTRATEGA_PALETTE, RARITY_COLORS). */
+:root {
+  --paper: #FCEFD9;        /* UITheme.PAPER */
+  --halo: #F8E2BE;         /* UITheme.HALO */
+  --sheet: #FFFFFF;        /* UITheme.PANEL */
+  --cream: #FFF8EC;        /* UITheme.CREAM */
+  --ink: #1F2340;          /* UITheme.INK: outlines and text */
+  --body-ink: #4A4F70;     /* UITheme.BODY_TEXT */
+  --muted: #5A5F80;        /* UITheme.MUTED */
+  --line: #1F2340;         /* the outline */
+  --shadow: #1F2340;       /* the solid drop */
+  --tip: #1F2340; --tip-ink: #FFF8EC; --tip-title: #F6C21C;
+  --focus: #12B5C9;        /* UITheme.FOCUS */
+  --coin: #F6C21C;         /* PA pips: the yellow of the d8 button */
+  --war: #E0452B; --war-ink: #9A2414; --war-soft: #FFD9CF;
+  --wiz: #7A4DE8; --wiz-ink: #4B2AA8; --wiz-soft: #E4DAFF;
+  --pri: #E99B12; --pri-ink: #8A5406; --pri-soft: #FFE9B8;
+  --rog: #13A088; --rog-ink: #07604F; --rog-soft: #C6F1E6;
+  --est: #5C6B85; --est-ink: #2F3A4D; --est-soft: #DDE3EE;
+  --common: #C9CBD6; --uncommon: #2D6FE0; --rare: #F6C21C;
+  --display: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #14172C; --halo: #1B1F3A; --sheet: #23284A; --cream: #2B3157;
+  --ink: #FFF8EC; --body-ink: #E3E5EF; --muted: #A9AEC9; --line: #0B0D1C; --shadow: #0B0D1C;
+  --tip: #FFF8EC; --tip-ink: #1F2340; --tip-title: #8A5406;
+  --war-ink: #FFB3A3; --war-soft: #4A1F1A; --wiz-ink: #CDBBFF; --wiz-soft: #2F2552;
+  --pri-ink: #FFD27A; --pri-soft: #45330F; --rog-ink: #8FE6D2; --rog-soft: #10403A;
+  --est-ink: #C9D2E3; --est-soft: #2E3546; --common: #8D91A8; --uncommon: #6B9BFF;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #14172C; --halo: #1B1F3A; --sheet: #23284A; --cream: #2B3157;
+  --ink: #FFF8EC; --body-ink: #E3E5EF; --muted: #A9AEC9; --line: #0B0D1C; --shadow: #0B0D1C;
+  --tip: #FFF8EC; --tip-ink: #1F2340; --tip-title: #8A5406;
+  --war-ink: #FFB3A3; --war-soft: #4A1F1A; --wiz-ink: #CDBBFF; --wiz-soft: #2F2552;
+  --pri-ink: #FFD27A; --pri-soft: #45330F; --rog-ink: #8FE6D2; --rog-soft: #10403A;
+  --est-ink: #C9D2E3; --est-soft: #2E3546; --common: #8D91A8; --uncommon: #6B9BFF;
+  color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: radial-gradient(ellipse 70% 40% at 50% 0, var(--halo), transparent 70%) no-repeat, var(--paper);
+  color: var(--ink); font: 600 15px/1.45 var(--body); }
+.wrap { max-width: 1240px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+.intro { padding-block: 40px 22px; display: grid; gap: 10px }
+.intro h1 { font: 400 clamp(32px, 6vw, 52px)/1.02 var(--display); margin: 0; letter-spacing: .01em; text-wrap: balance;
+  text-shadow: 0 3px 0 rgba(31,35,64,.18) }
+.intro p { margin: 0; max-width: 66ch; color: var(--muted) }
+.intro .how { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--muted); margin-top: 6px }
+.intro .how span { display: inline-flex; align-items: center; gap: 6px }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper) }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper);
+  border-bottom: 3px solid var(--line) }
+.bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-block: 10px 12px }
+.bar nav { display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 auto; min-width: 0 }
+.bar nav a { display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 12px 4px; border-radius: 999px;
+  text-decoration: none; color: #fff; font: 400 16px var(--display); letter-spacing: .02em;
+  background: var(--accent); border: 3px solid var(--line); box-shadow: 0 3px 0 var(--shadow);
+  text-shadow: 0 2px 0 rgba(31,35,64,.45); transition: transform .08s, box-shadow .08s }
+.bar nav a small { font: 800 12px var(--body); color: #fff; opacity: .85; font-variant-numeric: tabular-nums; text-shadow: none }
+.bar nav a:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--shadow) }
+.bar nav a:active { transform: translateY(3px); box-shadow: 0 0 0 var(--shadow) }
+.bar nav a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px }
+.bar input { flex: 0 1 240px; min-width: 0; font: 600 15px var(--body); padding: 7px 12px; border-radius: 12px;
+  border: 3px solid var(--line); background: var(--sheet); color: var(--ink); box-shadow: 0 3px 0 var(--shadow) }
+.bar input::placeholder { color: var(--muted) }
+.bar input:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px }
+
+.a-war { --accent: var(--war); --accent-ink: var(--war-ink); --accent-soft: var(--war-soft) }
+.a-wiz { --accent: var(--wiz); --accent-ink: var(--wiz-ink); --accent-soft: var(--wiz-soft) }
+.a-pri { --accent: var(--pri); --accent-ink: var(--pri-ink); --accent-soft: var(--pri-soft) }
+.a-rog { --accent: var(--rog); --accent-ink: var(--rog-ink); --accent-soft: var(--rog-soft) }
+.a-est { --accent: var(--est); --accent-ink: var(--est-ink); --accent-soft: var(--est-soft) }
+.a-tok { --accent: var(--pri); --accent-ink: var(--pri-ink); --accent-soft: var(--pri-soft) }
+.a-cel { --accent: var(--rog); --accent-ink: var(--rog-ink); --accent-soft: var(--rog-soft) }
+
+.pool { padding-block: 34px 10px; scroll-margin-top: 70px }
+.pool-head { display: grid; gap: 4px; margin-bottom: 18px }
+.pool-head h2 { margin: 0; justify-self: start; font: 400 26px/1.1 var(--display); color: #fff; letter-spacing: .02em;
+  background: var(--accent); padding: 6px 16px 5px; border-radius: 14px; border: 3px solid var(--line);
+  box-shadow: 0 4px 0 var(--shadow); text-shadow: 0 2px 0 rgba(31,35,64,.45) }
+.pool-head p { margin: 0; color: var(--muted) }
+.pool-head p:first-of-type { margin-top: 6px; color: var(--ink) }
+.pool-head .tally { font: 800 13px var(--body); font-variant-numeric: tabular-nums }
+.pool[hidden] { display: none }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 18px; align-items: start }
+.card { background: var(--sheet); border: 3px solid var(--line); border-radius: 18px; padding: 12px;
+  min-width: 0; box-shadow: 0 5px 0 var(--shadow) }
+.card .body { display: grid; gap: 8px; align-content: start; min-width: 0 }
+.card header { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: center }
+.card h3 { margin: 0; font: 400 22px/1.1 var(--display); color: var(--ink); letter-spacing: .01em; text-wrap: balance }
+.card .meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.card .meta > span { font: 800 11px/1 var(--body); text-transform: uppercase; letter-spacing: .07em;
+  padding: 4px 8px 3px; border-radius: 999px; border: 2px solid var(--line) }
+.card .rar { background: var(--rarity); color: #1F2340 }
+.r-common { --rarity: var(--common) } .r-uncommon { --rarity: var(--uncommon) } .r-rare { --rarity: var(--rare) }
+.r-uncommon .rar { color: #fff }
+.card .start { background: var(--accent-soft); color: var(--accent-ink) }
+/* A card already validated (definitivas.txt): a green chip and a green frame. */
+.card .final { background: var(--rog); color: #fff }
+.card.is-final { border-color: var(--rog); box-shadow: 0 5px 0 var(--rog-ink) }
+.ap { display: inline-flex; align-items: center; gap: 3px }
+.ap i { width: 13px; height: 13px; border-radius: 50%; background: var(--coin); border: 2px solid #1F2340 }
+.ap span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0) }
+.desc { margin: 0; font-size: 15.5px; color: var(--body-ink); background: var(--cream); padding: 9px 11px;
+  border-radius: 12px; border: 2px solid var(--line) }
+.kws { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font: 800 12px var(--body); text-transform: uppercase; letter-spacing: .06em }
+
+/* A status or keyword word: highlighted in the class' ink on its soft tint, like
+   on the card, and its explanation on hover, focus or tap. */
+.term { position: relative; color: var(--accent-ink); background: var(--accent-soft); font-weight: 800;
+  padding: 0 4px; border-radius: 5px; cursor: help; outline: none }
+.term:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px }
+.tip { display: none; position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); z-index: 20;
+  width: max-content; max-width: min(280px, 80vw); padding: 9px 11px; border-radius: 12px;
+  background: var(--tip); color: var(--tip-ink); font: 600 13.5px/1.4 var(--body); border: 3px solid var(--line);
+  text-transform: none; letter-spacing: 0; text-align: left; box-shadow: 0 4px 0 rgba(31,35,64,.35) }
+.tip b { display: block; font: 400 16px var(--display); color: var(--tip-title); margin-bottom: 3px; letter-spacing: .02em }
+.term:hover .tip, .term:focus .tip { display: block }
+
+/* A status: its name, pills for its facts, and who names it. */
+.card.status header { grid-template-columns: 1fr }
+.card .meta > .positive { background: var(--rog-soft); color: var(--rog-ink) }
+.card .meta > .negative { background: var(--war-soft); color: var(--war-ink) }
+.named { margin: 0; font-size: 13px; color: var(--muted) }
+
+.empty { padding-block: 40px; color: var(--muted) }
+footer { padding-block: 40px; color: var(--muted); font-size: 13px }
+footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; border-radius: 5px; border: 1px solid var(--muted) }
+@media (max-width: 520px) { .bar input { flex: 1 1 100% } .pool { scroll-margin-top: 120px } }
+</style>
+
+<div class="wrap intro">
+  <h1>Cartas de Dices &amp; Tokens</h1>
+  <p>Las 70 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 30 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
+  <div class="how">
+    <span><span class="ap"><i></i><i></i></span> coste en PA (se paga con el dado)</span>
+    <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
+    <span>Mano: se repone a 5 cartas</span>
+    <span>Definitivas: 1 de 70</span>
+  </div>
+</div>
+
+<div class="bar">
+  <div class="wrap">
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>12</small></a><a href="#wizard" class="a-wiz">Mago<small>12</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>30</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
+    <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
+  </div>
+</div>
+
+<main class="wrap">
+<section id="warrior" class="pool a-war">
+  <div class="pool-head">
+    <h2>Guerrero</h2>
+    <p>Cuerpo a cuerpo: pelea, aguanta y protege a los suyos.</p>
+    <p class="tally">12 cartas · 6 comunes · 4 infrecuentes · 2 raras</p>
+  </div>
+  <div class="grid"><article class="card r-common" data-search="estocada lucha contra un enemigo 1-2 casillas por delante que esté solo en su casilla y sin trabar. no te mueves. embestida">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Estocada</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Lucha contra un enemigo 1-2 casillas por delante que esté solo en su casilla y sin trabar. No te mueves.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="furia tu guerrero queda enfurecido. furia">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Furia</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño. Si tienes varias cargas, hace +1 por carga y gasta una.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="grito de guerra cada enemigo en la casilla de tu guerrero o en las de al lado queda debilitado. grito">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Grito de guerra</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Cada enemigo en la casilla de tu Guerrero o en las de al lado queda <span class="term" tabindex="0">Debilitado<span class="tip" role="tooltip"><b>Debilitado</b>-1 de daño en tu próximo golpe. Puede dejarlo en 0.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="pisotón un enemigo a 2 casillas o menos queda enraizado. pisoton">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Pisotón</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Un enemigo a 2 casillas o menos queda <span class="term" tabindex="0">Enraizado<span class="tip" role="tooltip"><b>Enraizado</b>No te mueves ni puedes huir, pero peleas con normalidad.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="sangre y acero tu guerrero queda vengativo. sangre_y_acero">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Sangre y acero</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Vengativo<span class="tip" role="tooltip"><b>Vengativo</b>El próximo enemigo que te dañe recibe 1 de vuelta.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="escudo de todos tu guerrero queda protector. escudo_de_todos">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Escudo de todos</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Protector<span class="tip" role="tooltip"><b>Protector</b>El próximo daño de golpe o de carta que iba a un aliado a 3 casillas o menos lo recibes tú.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon is-final" data-search="inquebrantable tu guerrero queda inquebrantable. inquebrantable definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Inquebrantable</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Inquebrantable<span class="tip" role="tooltip"><b>Inquebrantable</b>La próxima vez que morirías, sobrevives con 1 PV.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="embestida tu guerrero carga hasta 5 casillas y cae sobre el primer rival que encuentra. si puede, pelea con él; si sobrevive, lo lanza 2 casillas hacia atrás (si muere, su cadáver). carguen">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Embestida</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Tu Guerrero carga hasta 5 casillas y cae sobre el primer rival que encuentra. Si puede, pelea con él; si sobrevive, lo lanza 2 casillas hacia atrás (si muere, su <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span>).</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="torbellino 1 de daño a cada enemigo en la casilla de tu guerrero o en las de al lado. torbellino">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Torbellino</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">1 de daño a cada enemigo en la casilla de tu Guerrero o en las de al lado.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="aquí conmigo tu guerrero queda implacable: quien esté trabado con él no puede huir. aqui_conmigo">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Aquí conmigo</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Implacable<span class="tip" role="tooltip"><b>Implacable</b>Mientras estés trabado, el enemigo trabado contigo no puede huir. Espera a que te trabes y dura hasta el final del siguiente turno de ese enemigo.</span></span>: quien esté trabado con él no puede huir.</p>
+    
+  </div>
+</article><article class="card r-rare" data-search="última defensa tu guerrero queda protector e inquebrantable, y su casilla queda fortificado. ultima_defensa cargas">
+  <div class="body">
+    <header>
+      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <h3>Última defensa</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Protector<span class="tip" role="tooltip"><b>Protector</b>El próximo daño de golpe o de carta que iba a un aliado a 3 casillas o menos lo recibes tú.</span></span> e <span class="term" tabindex="0">Inquebrantable<span class="tip" role="tooltip"><b>Inquebrantable</b>La próxima vez que morirías, sobrevives con 1 PV.</span></span>, y su casilla queda <span class="term" tabindex="0">Fortificado<span class="tip" role="tooltip"><b>Fortificado</b>Quien pelee en esta casilla tiene +1 DEF: puede dejar el golpe en 0.</span></span>.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article><article class="card r-rare" data-search="ejecución pelea con un enemigo sin trabar a 2 casillas o menos. si tiene 2 pv o menos, muere en el acto. ejecucion">
+  <div class="body">
+    <header>
+      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <h3>Ejecución</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">Pelea con un enemigo sin trabar a 2 casillas o menos. Si tiene 2 PV o menos, muere en el acto.</p>
+    
+  </div>
+</article></div>
+</section>
+<section id="wizard" class="pool a-wiz">
+  <div class="pool-head">
+    <h2>Mago</h2>
+    <p>A distancia: daño, hielo y control del tablero.</p>
+    <p class="tally">12 cartas · 6 comunes · 4 infrecuentes · 2 raras</p>
+  </div>
+  <div class="grid"><article class="card r-common" data-search="chispa 1 de daño a un enemigo a 4 casillas o menos. chispa">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Chispa</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">1 de daño a un enemigo a 4 casillas o menos.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="prestidigitación roba 2 cartas. tu mano no pasa de 10. prestidigitacion">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Prestidigitación</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Roba 2 cartas. Tu mano no pasa de 10.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="mordisco helado 1 de daño a un enemigo a 2 casillas o menos, que queda escarchado. mordisco_helado">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Mordisco helado</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">1 de daño a un enemigo a 2 casillas o menos, que queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="adivinación miras las 3 primeras cartas de tu mazo y descartas las que quieras. sólo tú las ves. adivinacion">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Adivinación</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Miras las 3 primeras cartas de tu mazo y descartas las que quieras. Sólo tú las ves.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="ascua una casilla a 4 o menos queda ardiendo. ascua">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Ascua</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Una casilla a 4 o menos queda <span class="term" tabindex="0">Ardiendo<span class="tip" role="tooltip"><b>Ardiendo</b>Quien termina aquí su movimiento recibe 1 de daño.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="niebla una casilla a 4 o menos queda cubierta de niebla. niebla">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Niebla</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Una casilla a 4 o menos queda cubierta de <span class="term" tabindex="0">Niebla<span class="tip" role="tooltip"><b>Niebla</b>Nadie ve ni puede apuntar a quien esté aquí, ni desde dentro, y no hay combate. Los cuerpos siguen bloqueando el paso.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="escarcha un enemigo a 4 casillas o menos queda escarchado. no se puede lanzar sobre quien ya está escarchado, congelado o silenciado. escarcha">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Escarcha</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>. No se puede lanzar sobre quien ya está Escarchado, Congelado o Silenciado.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="¡congelar! un enemigo a 4 casillas o menos queda congelado. congelar">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>¡Congelar!</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Congelado<span class="tip" role="tooltip"><b>Congelado</b>No te mueves, no lanzas cartas de tu clase y no peleas. El primer golpe te hace +1 y rompe el hielo.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="parpadeo tu mago queda parpadeante: al coincidir con cualquier rival salta al azar 1-3 casillas, adelante o atrás, sin combate. parpadeo">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Parpadeo</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Tu Mago queda <span class="term" tabindex="0">Parpadeante<span class="tip" role="tooltip"><b>Parpadeante</b>Al coincidir en una casilla con cualquier rival, llegue quien llegue, salta al azar 1-3 casillas adelante o atrás, a una donde pueda parar, y no hay combate. En el destino saltan trampas y efectos, salvo el hielo. Se gasta al saltar; si no, al empezar tu siguiente turno.</span></span>: al coincidir con cualquier rival salta al azar 1-3 casillas, adelante o atrás, sin combate.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="ventisca elige una casilla a 6 o menos: cada enemigo a 2 casillas o menos de ella queda escarchado. ventisca">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Ventisca</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Elige una casilla a 6 o menos: cada enemigo a 2 casillas o menos de ella queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-rare" data-search="cadenas de hielo 3 casillas contiguas a 6 o menos quedan con hielo. cadenas_de_hielo cargas">
+  <div class="body">
+    <header>
+      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <h3>Cadenas de hielo</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">3 casillas contiguas a 6 o menos quedan con <span class="term" tabindex="0">Hielo<span class="tip" role="tooltip"><b>Hielo</b>Quien acaba aquí su movimiento resbala 1 casilla más y queda Trastabillado.</span></span>.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article><article class="card r-rare" data-search="bola de fuego 2 de daño a cada ficha en una casilla a 4 o menos y en las de al lado, también a las tuyas. la casilla elegida queda ardiendo. bola_de_fuego">
+  <div class="body">
+    <header>
+      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <h3>Bola de fuego</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">2 de daño a cada ficha en una casilla a 4 o menos y en las de al lado, también a las tuyas. La casilla elegida queda <span class="term" tabindex="0">Ardiendo<span class="tip" role="tooltip"><b>Ardiendo</b>Quien termina aquí su movimiento recibe 1 de daño.</span></span>.</p>
+    
+  </div>
+</article></div>
+</section>
+<section id="priest" class="pool a-pri">
+  <div class="pool-head">
+    <h2>Sacerdote</h2>
+    <p>Cura, bendice, protege y devuelve fichas a la vida.</p>
+    <p class="tally">13 cartas · 7 comunes · 4 infrecuentes · 2 raras</p>
+  </div>
+  <div class="grid"><article class="card r-common" data-search="escudo una ficha tuya a 4 casillas o menos queda protegido. no se puede lanzar sobre quien ya lo está. escudo">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Escudo</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>. No se puede lanzar sobre quien ya lo está.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="curación +1 pv a una ficha tuya herida a 4 casillas o menos. curacion">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Curación</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">+1 PV a una ficha tuya herida a 4 casillas o menos.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="bendición una ficha tuya a 4 casillas o menos queda escudado. no se puede lanzar sobre quien ya lo está. bendicion">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Bendición</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Escudado<span class="tip" role="tooltip"><b>Escudado</b>+1 DEF en tu próximo combate, aunque estés Expuesto: puede dejar el golpe en 0. No frena el daño de las cartas.</span></span>. No se puede lanzar sobre quien ya lo está.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="purificar quita un estado negativo a una ficha tuya a 4 casillas o menos. purificar">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Purificar</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Quita un estado negativo a una ficha tuya a 4 casillas o menos.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="santuario una casilla a 4 o menos queda en santuario. santuario">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Santuario</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Una casilla a 4 o menos queda en <span class="term" tabindex="0">Santuario<span class="tip" role="tooltip"><b>Santuario</b>Aquí no puede haber combate.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="plegaria una ficha tuya a 4 casillas o menos queda regenerando 2: recupera 1 pv al empezar cada uno de tus dos próximos turnos. plegaria">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Plegaria</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Regenerando<span class="tip" role="tooltip"><b>Regenerando</b>Recuperas 1 PV al empezar tu turno, una vez por cada carga.</span></span> 2: recupera 1 PV al empezar cada uno de tus dos próximos turnos.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="fervor una ficha tuya a 4 casillas o menos queda enfurecido. fervor">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Fervor</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño. Si tienes varias cargas, hace +1 por carga y gasta una.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="suelo sagrado dos casillas contiguas a 4 o menos quedan en santuario. suelo_sagrado">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Suelo sagrado</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Dos casillas contiguas a 4 o menos quedan en <span class="term" tabindex="0">Santuario<span class="tip" role="tooltip"><b>Santuario</b>Aquí no puede haber combate.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="¡silencio! un enemigo a 4 casillas o menos queda silenciado. silencio">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>¡Silencio!</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Silenciado<span class="tip" role="tooltip"><b>Silenciado</b>Las cartas de tu clase no se pueden jugar. Las de estratega, sí.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="martirio tu sacerdote pierde 1 pv y una ficha tuya a 4 casillas o menos queda inquebrantable. no se puede jugar si dejaría a tu sacerdote en 0. martirio">
+  <div class="body">
+    <header>
+      <div class="ap" title="0 PA" aria-label="0 PA"><span>0 PA</span></div>
+      <h3>Martirio</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Tu Sacerdote pierde 1 PV y una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Inquebrantable<span class="tip" role="tooltip"><b>Inquebrantable</b>La próxima vez que morirías, sobrevives con 1 PV.</span></span>. No se puede jugar si dejaría a tu Sacerdote en 0.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="milagro +2 pv a una ficha tuya herida a 4 casillas o menos. milagro">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Milagro</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">+2 PV a una ficha tuya herida a 4 casillas o menos.</p>
+    
+  </div>
+</article><article class="card r-rare" data-search="intervención divina todas tus fichas del anillo quedan protegido hasta el inicio de tu próximo turno. intervencion">
+  <div class="body">
+    <header>
+      <div class="ap" title="4 PA" aria-label="4 PA"><i></i><i></i><i></i><i></i><span>4 PA</span></div>
+      <h3>Intervención divina</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">Todas tus fichas del anillo quedan <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span> hasta el inicio de tu próximo turno.</p>
+    
+  </div>
+</article><article class="card r-rare" data-search="resurrección una ficha tuya en casa sale sobre un cadáver cualquiera del tablero, sin 5 y sin combate, y lo gasta. no vale si hay un rival en él. resurreccion">
+  <div class="body">
+    <header>
+      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <h3>Resurrección</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">Una ficha tuya en casa sale sobre un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> cualquiera del tablero, sin 5 y sin combate, y lo gasta. No vale si hay un rival en él.</p>
+    
+  </div>
+</article></div>
+</section>
+<section id="rogue" class="pool a-rog">
+  <div class="pool-head">
+    <h2>Pícaro</h2>
+    <p>Sigilo, trampas, robo y remates por la espalda.</p>
+    <p class="tally">18 cartas · 9 comunes · 7 infrecuentes · 2 raras</p>
+  </div>
+  <div class="grid"><article class="card r-common" data-search="esquiva tu pícaro queda protegido. esquiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Esquiva</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Tu Pícaro queda <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="robo el dueño de un enemigo a 4 casillas o menos descarta 1 carta al azar. robo">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Robo</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">El dueño de un enemigo a 4 casillas o menos descarta 1 carta al azar.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="trampa pon una trampa en una casilla libre a 4 o menos que no sea seguro. trampa">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Trampa</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Pon una <span class="term" tabindex="0">Trampa<span class="tip" role="tooltip"><b>Trampa</b>Invisible para los rivales. El primer enemigo que entre se para aquí y recibe 1 de daño. Máximo 3 por jugador: la cuarta quita la más vieja.</span></span> en una casilla libre a 4 o menos que no sea seguro.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="zancadilla un enemigo a 2 casillas o menos queda trastabillado. zancadilla">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Zancadilla</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Un enemigo a 2 casillas o menos queda <span class="term" tabindex="0">Trastabillado<span class="tip" role="tooltip"><b>Trastabillado</b>Tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="ocultarse tu pícaro queda escondido. ocultarse">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Ocultarse</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Tu Pícaro queda <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="piel de anguila tu pícaro queda escurridizo. piel_de_anguila">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Piel de anguila</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Tu Pícaro queda <span class="term" tabindex="0">Escurridizo<span class="tip" role="tooltip"><b>Escurridizo</b>Al moverse atraviesa barreras y trampas, y la trampa no salta; el destino debe ser legal. Dura hasta que atraviesa una barrera.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="estaba ahí un rival elige una carta de su mano y la descarta. estaba_ahi">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Estaba ahí</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Un rival elige una carta de su mano y la descarta.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="distracción un rival queda distraído: al final de su turno repone 4 cartas en vez de 5. distraccion">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Distracción</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Un rival queda <span class="term" tabindex="0">Distraído<span class="tip" role="tooltip"><b>Distraído</b>Al final de tu próximo turno repones 4 cartas en vez de 5.</span></span>: al final de su turno repone 4 cartas en vez de 5.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="paso sombrío tu pícaro avanza exactamente 3 casillas. si cae sobre un enemigo, pelea; si estaba escondido, con ataque furtivo. paso_sombrio">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Paso sombrío</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Tu Pícaro avanza exactamente 3 casillas. Si cae sobre un enemigo, pelea; si estaba <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>, con <span class="term" tabindex="0">Ataque furtivo<span class="tip" role="tooltip"><b>Ataque furtivo</b>Tu próximo golpe hace el doble de daño, después de restar la DEF.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="foso pon una trampa en hasta 2 casillas libres a 4 o menos que no sean seguro. foso cargas">
+  <div class="body">
+    <header>
+      <div class="ap" title="0 PA" aria-label="0 PA"><span>0 PA</span></div>
+      <h3>Foso</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Pon una <span class="term" tabindex="0">Trampa<span class="tip" role="tooltip"><b>Trampa</b>Invisible para los rivales. El primer enemigo que entre se para aquí y recibe 1 de daño. Máximo 3 por jugador: la cuarta quita la más vieja.</span></span> en hasta 2 casillas libres a 4 o menos que no sean seguro.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega 2 veces; vuelve al descarte con una menos y, sin cargas, sale de la partida.</span></span></span></p>
+  </div>
+</article><article class="card r-uncommon" data-search="marca un enemigo a 4 casillas o menos queda marcado. marca">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Marca</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Marcado<span class="tip" role="tooltip"><b>Marcado</b>El próximo daño que recibas es +1.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="chantaje miras la mano de un rival y eliges tú la carta que descarta. chantaje">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Chantaje</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Miras la mano de un rival y eliges tú la carta que descarta.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="de incógnito tu pícaro queda disfrazado. incognito">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>De incógnito</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Tu Pícaro queda <span class="term" tabindex="0">Disfrazado<span class="tip" role="tooltip"><b>Disfrazado</b>Ninguna carta lanzada desde fuera de tu casilla puede apuntarte. Se acaba al quedar trabado.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="afilar sólo si tu pícaro está escondido. queda enfurecido 2: +2 de daño en su próximo golpe y +1 en el siguiente. afilar">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Afilar</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Sólo si tu Pícaro está <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>. Queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño. Si tienes varias cargas, hace +1 por carga y gasta una.</span></span> 2: +2 de daño en su próximo golpe y +1 en el siguiente.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="emboscada tu pícaro salta sobre un enemigo hasta 4 casillas por delante y pelea; si estaba escondido, con ataque furtivo. emboscada">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Emboscada</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Tu Pícaro salta sobre un enemigo hasta 4 casillas por delante y pelea; si estaba <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>, con <span class="term" tabindex="0">Ataque furtivo<span class="tip" role="tooltip"><b>Ataque furtivo</b>Tu próximo golpe hace el doble de daño, después de restar la DEF.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="golpe bajo 1 de daño a un enemigo a 2 casillas o menos, que queda sangrando. golpe_bajo">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Golpe bajo</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">1 de daño a un enemigo a 2 casillas o menos, que queda <span class="term" tabindex="0">Sangrando<span class="tip" role="tooltip"><b>Sangrando</b>Recibes 1 de daño la próxima vez que te muevas. Si no te mueves, no sangras.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-rare" data-search="puñalada pelea con un enemigo sin trabar a 1 casilla o menos. tu golpe ignora su def y lleva ataque furtivo. punalada">
+  <div class="body">
+    <header>
+      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <h3>Puñalada</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">Pelea con un enemigo sin trabar a 1 casilla o menos. Tu golpe ignora su DEF y lleva <span class="term" tabindex="0">Ataque furtivo<span class="tip" role="tooltip"><b>Ataque furtivo</b>Tu próximo golpe hace el doble de daño, después de restar la DEF.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-rare" data-search="saqueo cada rival descarta 2 cartas al azar. saqueo cargas">
+  <div class="body">
+    <header>
+      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <h3>Saqueo</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">Cada rival descarta 2 cartas al azar.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article></div>
+</section>
+<section id="estratega" class="pool a-est">
+  <div class="pool-head">
+    <h2>Estratega</h2>
+    <p>Las cartas del jugador: no necesitan ficha que las lance.</p>
+    <p class="tally">12 cartas · 6 comunes · 4 infrecuentes · 2 raras</p>
+  </div>
+  <div class="grid"><article class="card r-common" data-search="¡en marcha! una ficha tuya queda raudo. en_marcha">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>¡En marcha!</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial ×2</span></div>
+    </header>
+    <p class="desc">Una ficha tuya queda <span class="term" tabindex="0">Raudo<span class="tip" role="tooltip"><b>Raudo</b>Tu próximo movimiento es +1.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="reagrupar descarta tu mano y roba otras tantas cartas. reagrupar">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Reagrupar</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Descarta tu mano y roba otras tantas cartas.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="cambio de planes descarta 1 carta al azar y roba 2. cambio_de_planes">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Cambio de planes</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Descarta 1 carta al azar y roba 2.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="mano firme quedas sereno: tu próxima tirada podrás repetirla una vez. mano_firme">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Mano firme</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Quedas <span class="term" tabindex="0">Sereno<span class="tip" role="tooltip"><b>Sereno</b>Tu próxima tirada podrás repetirla una vez.</span></span>: tu próxima tirada podrás repetirla una vez.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="abrir la mente quedas con mente abierta: al final de este turno repones 7 cartas en vez de 5. abrir_la_mente">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Abrir la mente</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Quedas con <span class="term" tabindex="0">Mente abierta<span class="tip" role="tooltip"><b>Mente abierta</b>Al final de este turno repones 7 cartas en vez de 5.</span></span>: al final de este turno repones 7 cartas en vez de 5.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="asegurar retaguardia una ficha tuya queda en repliegue: su próximo movimiento puede ir hacia atrás. retirada">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Asegurar retaguardia</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Una ficha tuya queda en <span class="term" tabindex="0">Repliegue<span class="tip" role="tooltip"><b>Repliegue</b>Tu próximo movimiento puedes resolverlo hacia atrás.</span></span>: su próximo movimiento puede ir hacia atrás.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="purga quita todos los estados negativos a una ficha tuya. purga">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Purga</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Quita todos los estados negativos a una ficha tuya.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="instrucción una ficha tuya gana 1 de experiencia. instruccion">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Instrucción</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Una ficha tuya gana 1 de experiencia.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="arenga quedas estimulado: la próxima vez que juegues cartas tienes 1 pa más. arenga">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Arenga</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Quedas <span class="term" tabindex="0">Estimulado<span class="tip" role="tooltip"><b>Estimulado</b>La próxima vez que juegues cartas tienes 1 PA más.</span></span>: la próxima vez que juegues cartas tienes 1 PA más.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="¡a las armas! saca una ficha de casa a tu salida, sin 5 y sin combate. necesita la salida libre. leva única cargas">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>¡A las armas!</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Saca una ficha de casa a tu salida, sin 5 y sin combate. Necesita la salida libre.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Única<span class="tip" role="tooltip"><b>Única</b>Nunca puedes tener dos copias a la vez.</span></span></span><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega 2 veces; vuelve al descarte con una menos y, sin cargas, sale de la partida.</span></span></span></p>
+  </div>
+</article><article class="card r-rare" data-search="dados cargados tu próxima tirada la subes o bajas 1, tú eliges. a cambio quedas con resuello: la próxima vez que juegues cartas tienes 1 pa menos. dados_cargados">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Dados cargados</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">Tu próxima tirada la subes o bajas 1, tú eliges. A cambio quedas con <span class="term" tabindex="0">Resuello<span class="tip" role="tooltip"><b>Resuello</b>Debes 1 punto de acción: se cobra la próxima vez que lances cartas.</span></span>: la próxima vez que juegues cartas tienes 1 PA menos.</p>
+    
+  </div>
+</article><article class="card r-rare" data-search="momento decisivo tu próxima tirada es un 6. momento_decisivo cargas">
+  <div class="body">
+    <header>
+      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <h3>Momento decisivo</h3>
+      <div class="meta"><span class="rar">Rara</span></div>
+    </header>
+    <p class="desc">Tu próxima tirada es un 6.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article></div>
+</section>
+<section id="minted" class="pool a-est">
+  <div class="pool-head">
+    <h2>Acuñadas por el juego</h2>
+    <p>No se roban ni se eligen en un draft: el juego las crea.</p>
+    <p class="tally">3 cartas · 3 comunes</p>
+  </div>
+  <div class="grid"><article class="card r-common" data-search="invocación saca una ficha de casa a tu salida, sin 5 y sin combate. necesita la salida libre. invocacion única cargas">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Invocación</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Saca una ficha de casa a tu salida, sin 5 y sin combate. Necesita la salida libre.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Única<span class="tip" role="tooltip"><b>Única</b>Nunca puedes tener dos copias a la vez.</span></span></span><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article><article class="card r-common" data-search="corona una ficha tuya llegó a la meta. esta carta no hace nada. corona">
+  <div class="body">
+    <header>
+      <div class="ap" title="0 PA" aria-label="0 PA"><span>0 PA</span></div>
+      <h3>Corona</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Una ficha tuya llegó a la meta. Esta carta no hace nada.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="catapulta lanza una ficha tuya exactamente 20 casillas. raudo, trastabillado y demás no cuentan. catapulta única cargas">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Catapulta</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Lanza una ficha tuya exactamente 20 casillas. Raudo, Trastabillado y demás no cuentan.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Única<span class="tip" role="tooltip"><b>Única</b>Nunca puedes tener dos copias a la vez.</span></span></span><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article></div>
+</section>
+<section id="token" class="pool a-tok">
+  <div class="pool-head">
+    <h2>Estados de ficha</h2>
+    <p>Lo que lleva encima una ficha.</p>
+    <p class="tally">30 estados</p>
+  </div>
+  <div class="grid"><article class="card status" data-search="vengativo el próximo enemigo que te dañe recibe 1 de vuelta. vengeful sangre y acero">
+  <div class="body">
+    <header>
+      <h3>Vengativo</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">El próximo enemigo que te dañe recibe 1 de vuelta.</p>
+    <p class="named">Lo nombran: Sangre y acero</p>
+  </div>
+</article><article class="card status" data-search="marcado el próximo daño que recibas es +1. marked marca">
+  <div class="body">
+    <header>
+      <h3>Marcado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">El próximo daño que recibas es +1.</p>
+    <p class="named">Lo nombran: Marca</p>
+  </div>
+</article><article class="card status" data-search="escondido los rivales no te ven ni pueden apuntarte. si caes sobre un enemigo peleas con ataque furtivo, y se rompe; también si te caen encima. stealthed ocultarse paso sombrío afilar emboscada">
+  <div class="body">
+    <header>
+      <h3>Escondido</h3>
+      <div class="meta"><span class="positive">Beneficioso</span><span>Oculto a los rivales</span></div>
+    </header>
+    <p class="desc">Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</p>
+    <p class="named">Lo nombran: Ocultarse, Paso sombrío, Afilar, Emboscada</p>
+  </div>
+</article><article class="card status" data-search="disfrazado ninguna carta lanzada desde fuera de tu casilla puede apuntarte. se acaba al quedar trabado. disguised de incógnito">
+  <div class="body">
+    <header>
+      <h3>Disfrazado</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Ninguna carta lanzada desde fuera de tu casilla puede apuntarte. Se acaba al quedar trabado.</p>
+    <p class="named">Lo nombran: De incógnito</p>
+  </div>
+</article><article class="card status" data-search="regenerando recuperas 1 pv al empezar tu turno, una vez por cada carga. regenerating plegaria">
+  <div class="body">
+    <header>
+      <h3>Regenerando</h3>
+      <div class="meta"><span class="positive">Beneficioso</span><span>Acumulable</span></div>
+    </header>
+    <p class="desc">Recuperas 1 PV al empezar tu turno, una vez por cada carga.</p>
+    <p class="named">Lo nombran: Plegaria</p>
+  </div>
+</article><article class="card status" data-search="repliegue tu próximo movimiento puedes resolverlo hacia atrás. backpedal asegurar retaguardia">
+  <div class="body">
+    <header>
+      <h3>Repliegue</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Tu próximo movimiento puedes resolverlo hacia atrás.</p>
+    <p class="named">Lo nombran: Asegurar retaguardia</p>
+  </div>
+</article><article class="card status" data-search="sangrando recibes 1 de daño la próxima vez que te muevas. si no te mueves, no sangras. bleeding golpe bajo">
+  <div class="body">
+    <header>
+      <h3>Sangrando</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Recibes 1 de daño la próxima vez que te muevas. Si no te mueves, no sangras.</p>
+    <p class="named">Lo nombran: Golpe bajo</p>
+  </div>
+</article><article class="card status" data-search="trastabillado tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos. tripped zancadilla">
+  <div class="body">
+    <header>
+      <h3>Trastabillado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span><span>Acumulable</span></div>
+    </header>
+    <p class="desc">Tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos.</p>
+    <p class="named">Lo nombran: Zancadilla</p>
+  </div>
+</article><article class="card status" data-search="escarchado las cartas de tu clase cuestan 1 pa más. si te vuelven a escarchar, quedas congelado. chilled mordisco helado escarcha ventisca">
+  <div class="body">
+    <header>
+      <h3>Escarchado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</p>
+    <p class="named">Lo nombran: Mordisco helado, Escarcha, Ventisca</p>
+  </div>
+</article><article class="card status" data-search="congelado no te mueves, no lanzas cartas de tu clase y no peleas. el primer golpe te hace +1 y rompe el hielo. frozen ¡congelar!">
+  <div class="body">
+    <header>
+      <h3>Congelado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">No te mueves, no lanzas cartas de tu clase y no peleas. El primer golpe te hace +1 y rompe el hielo.</p>
+    <p class="named">Lo nombran: ¡Congelar!</p>
+  </div>
+</article><article class="card status" data-search="enraizado no te mueves ni puedes huir, pero peleas con normalidad. rooted pisotón">
+  <div class="body">
+    <header>
+      <h3>Enraizado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">No te mueves ni puedes huir, pero peleas con normalidad.</p>
+    <p class="named">Lo nombran: Pisotón</p>
+  </div>
+</article><article class="card status" data-search="imparable al empezar tu próximo movimiento se va todo lo que lo impida. unstoppable">
+  <div class="body">
+    <header>
+      <h3>Imparable</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Al empezar tu próximo movimiento se va todo lo que lo impida.</p>
+    
+  </div>
+</article><article class="card status" data-search="silenciado las cartas de tu clase no se pueden jugar. las de estratega, sí. silenced ¡silencio!">
+  <div class="body">
+    <header>
+      <h3>Silenciado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Las cartas de tu clase no se pueden jugar. Las de estratega, sí.</p>
+    <p class="named">Lo nombran: ¡Silencio!</p>
+  </div>
+</article><article class="card status" data-search="implacable mientras estés trabado, el enemigo trabado contigo no puede huir. espera a que te trabes y dura hasta el final del siguiente turno de ese enemigo. implacable aquí conmigo">
+  <div class="body">
+    <header>
+      <h3>Implacable</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Mientras estés trabado, el enemigo trabado contigo no puede huir. Espera a que te trabes y dura hasta el final del siguiente turno de ese enemigo.</p>
+    <p class="named">Lo nombran: Aquí conmigo</p>
+  </div>
+</article><article class="card status" data-search="escudado +1 def en tu próximo combate, aunque estés expuesto: puede dejar el golpe en 0. no frena el daño de las cartas. shielded bendición">
+  <div class="body">
+    <header>
+      <h3>Escudado</h3>
+      <div class="meta"><span class="positive">Beneficioso</span><span>Acumulable</span></div>
+    </header>
+    <p class="desc">+1 DEF en tu próximo combate, aunque estés Expuesto: puede dejar el golpe en 0. No frena el daño de las cartas.</p>
+    <p class="named">Lo nombran: Bendición</p>
+  </div>
+</article><article class="card status" data-search="protegido el próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0. warded escudo esquiva intervención divina">
+  <div class="body">
+    <header>
+      <h3>Protegido</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</p>
+    <p class="named">Lo nombran: Escudo, Esquiva, Intervención divina</p>
+  </div>
+</article><article class="card status" data-search="enfurecido tu próximo golpe hace +1 de daño. si tienes varias cargas, hace +1 por carga y gasta una. surged furia afilar fervor">
+  <div class="body">
+    <header>
+      <h3>Enfurecido</h3>
+      <div class="meta"><span class="positive">Beneficioso</span><span>Acumulable</span></div>
+    </header>
+    <p class="desc">Tu próximo golpe hace +1 de daño. Si tienes varias cargas, hace +1 por carga y gasta una.</p>
+    <p class="named">Lo nombran: Furia, Afilar, Fervor</p>
+  </div>
+</article><article class="card status" data-search="ataque furtivo tu próximo golpe hace el doble de daño, después de restar la def. double strike puñalada paso sombrío emboscada">
+  <div class="body">
+    <header>
+      <h3>Ataque furtivo</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Tu próximo golpe hace el doble de daño, después de restar la DEF.</p>
+    <p class="named">Lo nombran: Puñalada, Paso sombrío, Emboscada</p>
+  </div>
+</article><article class="card status" data-search="debilitado -1 de daño en tu próximo golpe. puede dejarlo en 0. weakened grito de guerra">
+  <div class="body">
+    <header>
+      <h3>Debilitado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span><span>Acumulable</span></div>
+    </header>
+    <p class="desc">-1 de daño en tu próximo golpe. Puede dejarlo en 0.</p>
+    <p class="named">Lo nombran: Grito de guerra</p>
+  </div>
+</article><article class="card status" data-search="expuesto tu def de clase cuenta como 0 en tu próximo combate. escudado y fortificado siguen contando. exposed">
+  <div class="body">
+    <header>
+      <h3>Expuesto</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Tu DEF de clase cuenta como 0 en tu próximo combate. Escudado y Fortificado siguen contando.</p>
+    
+  </div>
+</article><article class="card status" data-search="drenado los próximos pv que recuperarías se quedan en 0. drained">
+  <div class="body">
+    <header>
+      <h3>Drenado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Los próximos PV que recuperarías se quedan en 0.</p>
+    
+  </div>
+</article><article class="card status" data-search="envenenado recibes 1 de daño al principio de tu turno. poisoned">
+  <div class="body">
+    <header>
+      <h3>Envenenado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span><span>Acumulable</span></div>
+    </header>
+    <p class="desc">Recibes 1 de daño al principio de tu turno.</p>
+    
+  </div>
+</article><article class="card status" data-search="al acecho el próximo enemigo que entre a 2 casillas o menos recibe 1. overwatch">
+  <div class="body">
+    <header>
+      <h3>Al acecho</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">El próximo enemigo que entre a 2 casillas o menos recibe 1.</p>
+    
+  </div>
+</article><article class="card status" data-search="raudo tu próximo movimiento es +1. hastened ¡en marcha!">
+  <div class="body">
+    <header>
+      <h3>Raudo</h3>
+      <div class="meta"><span class="positive">Beneficioso</span><span>Acumulable</span></div>
+    </header>
+    <p class="desc">Tu próximo movimiento es +1.</p>
+    <p class="named">Lo nombran: ¡En marcha!</p>
+  </div>
+</article><article class="card status" data-search="encandilado no te trabas ni atacas al color que te encandiló. los demás, normal. charmed">
+  <div class="body">
+    <header>
+      <h3>Encandilado</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">No te trabas ni atacas al color que te encandiló. Los demás, normal.</p>
+    
+  </div>
+</article><article class="card status" data-search="inquebrantable la próxima vez que morirías, sobrevives con 1 pv. unbreakable última defensa inquebrantable martirio">
+  <div class="body">
+    <header>
+      <h3>Inquebrantable</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">La próxima vez que morirías, sobrevives con 1 PV.</p>
+    <p class="named">Lo nombran: Última defensa, Inquebrantable, Martirio</p>
+  </div>
+</article><article class="card status" data-search="temerario tu próximo golpe hace +2, y recibes 1 cuando entra. reckless">
+  <div class="body">
+    <header>
+      <h3>Temerario</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Tu próximo golpe hace +2, y recibes 1 cuando entra.</p>
+    
+  </div>
+</article><article class="card status" data-search="escurridizo al moverse atraviesa barreras y trampas, y la trampa no salta; el destino debe ser legal. dura hasta que atraviesa una barrera. ethereal piel de anguila">
+  <div class="body">
+    <header>
+      <h3>Escurridizo</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Al moverse atraviesa barreras y trampas, y la trampa no salta; el destino debe ser legal. Dura hasta que atraviesa una barrera.</p>
+    <p class="named">Lo nombran: Piel de anguila</p>
+  </div>
+</article><article class="card status" data-search="protector el próximo daño de golpe o de carta que iba a un aliado a 3 casillas o menos lo recibes tú. protector escudo de todos última defensa">
+  <div class="body">
+    <header>
+      <h3>Protector</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">El próximo daño de golpe o de carta que iba a un aliado a 3 casillas o menos lo recibes tú.</p>
+    <p class="named">Lo nombran: Escudo de todos, Última defensa</p>
+  </div>
+</article><article class="card status" data-search="parpadeante al coincidir en una casilla con cualquier rival, llegue quien llegue, salta al azar 1-3 casillas adelante o atrás, a una donde pueda parar, y no hay combate. en el destino saltan trampas y efectos, salvo el hielo. se gasta al saltar; si no, al empezar tu siguiente turno. blinking parpadeo">
+  <div class="body">
+    <header>
+      <h3>Parpadeante</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Al coincidir en una casilla con cualquier rival, llegue quien llegue, salta al azar 1-3 casillas adelante o atrás, a una donde pueda parar, y no hay combate. En el destino saltan trampas y efectos, salvo el hielo. Se gasta al saltar; si no, al empezar tu siguiente turno.</p>
+    <p class="named">Lo nombran: Parpadeo</p>
+  </div>
+</article></div>
+</section>
+<section id="cell" class="pool a-cel">
+  <div class="pool-head">
+    <h2>Estados de casilla</h2>
+    <p>Lo que hay en el suelo: afecta a quien pisa o cruza la casilla.</p>
+    <p class="tally">13 estados</p>
+  </div>
+  <div class="grid"><article class="card status" data-search="ardiendo quien termina aquí su movimiento recibe 1 de daño. burning ascua bola de fuego">
+  <div class="body">
+    <header>
+      <h3>Ardiendo</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Quien termina aquí su movimiento recibe 1 de daño.</p>
+    <p class="named">Lo nombran: Ascua, Bola de fuego</p>
+  </div>
+</article><article class="card status" data-search="niebla nadie ve ni puede apuntar a quien esté aquí, ni desde dentro, y no hay combate. los cuerpos siguen bloqueando el paso. fog niebla">
+  <div class="body">
+    <header>
+      <h3>Niebla</h3>
+      <div class="meta"></div>
+    </header>
+    <p class="desc">Nadie ve ni puede apuntar a quien esté aquí, ni desde dentro, y no hay combate. Los cuerpos siguen bloqueando el paso.</p>
+    <p class="named">Lo nombran: Niebla</p>
+  </div>
+</article><article class="card status" data-search="cadáver un cuerpo que algunas cartas pueden gastar. se pudre a las 3 rondas. corpse embestida resurrección">
+  <div class="body">
+    <header>
+      <h3>Cadáver</h3>
+      <div class="meta"></div>
+    </header>
+    <p class="desc">Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</p>
+    <p class="named">Lo nombran: Embestida, Resurrección</p>
+  </div>
+</article><article class="card status" data-search="fortificado quien pelee en esta casilla tiene +1 def: puede dejar el golpe en 0. fortified última defensa">
+  <div class="body">
+    <header>
+      <h3>Fortificado</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Quien pelee en esta casilla tiene +1 DEF: puede dejar el golpe en 0.</p>
+    <p class="named">Lo nombran: Última defensa</p>
+  </div>
+</article><article class="card status" data-search="arenas movedizas quien termina aquí su movimiento queda trastabillado. quicksand">
+  <div class="body">
+    <header>
+      <h3>Arenas movedizas</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Quien termina aquí su movimiento queda Trastabillado.</p>
+    
+  </div>
+</article><article class="card status" data-search="terreno maldito quien termina aquí su movimiento empieza a sangrar. blighted">
+  <div class="body">
+    <header>
+      <h3>Terreno maldito</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Quien termina aquí su movimiento empieza a sangrar.</p>
+    
+  </div>
+</article><article class="card status" data-search="raíces quien termina aquí su movimiento queda enraizado. grasping">
+  <div class="body">
+    <header>
+      <h3>Raíces</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Quien termina aquí su movimiento queda enraizado.</p>
+    
+  </div>
+</article><article class="card status" data-search="hielo quien acaba aquí su movimiento resbala 1 casilla más y queda trastabillado. frozen cadenas de hielo">
+  <div class="body">
+    <header>
+      <h3>Hielo</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">Quien acaba aquí su movimiento resbala 1 casilla más y queda Trastabillado.</p>
+    <p class="named">Lo nombran: Cadenas de hielo</p>
+  </div>
+</article><article class="card status" data-search="santuario aquí no puede haber combate. sanctuary suelo sagrado santuario">
+  <div class="body">
+    <header>
+      <h3>Santuario</h3>
+      <div class="meta"></div>
+    </header>
+    <p class="desc">Aquí no puede haber combate.</p>
+    <p class="named">Lo nombran: Suelo sagrado, Santuario</p>
+  </div>
+</article><article class="card status" data-search="trampa invisible para los rivales. el primer enemigo que entre se para aquí y recibe 1 de daño. máximo 3 por jugador: la cuarta quita la más vieja. trapped foso trampa">
+  <div class="body">
+    <header>
+      <h3>Trampa</h3>
+      <div class="meta"><span class="negative">Perjudicial</span><span>Acumulable</span><span>Oculto a los rivales</span></div>
+    </header>
+    <p class="desc">Invisible para los rivales. El primer enemigo que entre se para aquí y recibe 1 de daño. Máximo 3 por jugador: la cuarta quita la más vieja.</p>
+    <p class="named">Lo nombran: Foso, Trampa</p>
+  </div>
+</article><article class="card status" data-search="barricada nadie puede terminar aquí su movimiento, pero se puede cruzar. barricaded">
+  <div class="body">
+    <header>
+      <h3>Barricada</h3>
+      <div class="meta"></div>
+    </header>
+    <p class="desc">Nadie puede terminar aquí su movimiento, pero se puede cruzar.</p>
+    
+  </div>
+</article><article class="card status" data-search="barrera nadie puede terminar aquí su movimiento ni cruzar. barrera">
+  <div class="body">
+    <header>
+      <h3>Barrera</h3>
+      <div class="meta"><span>Lectura del tablero</span></div>
+    </header>
+    <p class="desc">Nadie puede terminar aquí su movimiento ni cruzar.</p>
+    
+  </div>
+</article><article class="card status" data-search="seguro aquí no puede haber combate, salvo quien sale de casa a su salida. seguro">
+  <div class="body">
+    <header>
+      <h3>Seguro</h3>
+      <div class="meta"><span>Lectura del tablero</span></div>
+    </header>
+    <p class="desc">Aquí no puede haber combate, salvo quien sale de casa a su salida.</p>
+    
+  </div>
+</article></div>
+</section>
+<p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
+</main>
+
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>5dc61ea</code>.</footer>
+
+<script>
+const q = document.getElementById('q');
+const none = document.getElementById('none');
+q.addEventListener('input', () => {
+  const term = q.value.trim().toLowerCase();
+  let any = false;
+  document.querySelectorAll('.pool').forEach(pool => {
+    let shown = 0;
+    pool.querySelectorAll('.card').forEach(card => {
+      const hit = !term || card.dataset.search.includes(term);
+      card.hidden = !hit;
+      if (hit) shown++;
+    });
+    pool.hidden = shown === 0;
+    if (shown) any = true;
+  });
+  none.hidden = any;
+});
+</script>
