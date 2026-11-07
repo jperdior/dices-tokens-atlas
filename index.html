@@ -158,18 +158,18 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="wrap intro">
   <h1>Cartas de Dices &amp; Tokens</h1>
-  <p>Las 72 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 32 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
+  <p>Las 73 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 32 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 19 de 72</span>
+    <span>Definitivas: 21 de 73</span>
   </div>
 </div>
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>12</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>32</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>13</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>32</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
     <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
   </div>
 </div>
@@ -327,7 +327,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Mago</h2>
     <p>A distancia: daño, hielo y control del tablero.</p>
-    <p class="tally">12 cartas · 6 comunes · 4 infrecuentes · 2 raras</p>
+    <p class="tally">13 cartas · 6 comunes · 5 infrecuentes · 2 raras</p>
   </div>
   <div class="grid"><article class="card r-common is-final" data-search="chispa hace 2 de daño al enemigo objetivo a 4 casillas o menos. chispa definitiva">
   <div class="body">
@@ -339,14 +339,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Hace 2 de daño al enemigo objetivo a 4 casillas o menos.</p>
     
   </div>
-</article><article class="card r-common" data-search="mordisco helado 1 de daño a un enemigo a 2 casillas o menos, que queda escarchado. mordisco_helado">
+</article><article class="card r-common is-final" data-search="empujón mágico cualquier ficha a 4 casillas o menos sale despedida 2 casillas, alejándose de tu mago. empujon_magico definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Mordisco helado</h3>
-      <div class="meta"><span class="rar">Común</span></div>
+      <h3>Empujón mágico</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">1 de daño a un enemigo a 2 casillas o menos, que queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>.</p>
+    <p class="desc">Cualquier ficha a 4 casillas o menos sale despedida 2 casillas, alejándose de tu Mago.</p>
     
   </div>
 </article><article class="card r-common" data-search="escarcha un enemigo a 4 casillas o menos queda escarchado. no se puede lanzar sobre quien ya está escarchado, congelado o silenciado. escarcha">
@@ -397,6 +397,16 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <div class="meta"><span class="rar">Infrecuente</span><span class="start">Mazo inicial</span><span class="final">✓ Definitiva</span></div>
     </header>
     <p class="desc">Roba 2 cartas.</p>
+    
+  </div>
+</article><article class="card r-uncommon is-final" data-search="mordisco helado 1 de daño a un enemigo a 4 casillas o menos, que queda escarchado. mordisco_helado definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Mordisco helado</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">1 de daño a un enemigo a 4 casillas o menos, que queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="¡congelar! un enemigo a 4 casillas o menos queda congelado. congelar">
@@ -1367,7 +1377,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>7c98e47</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>fc86c7b</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
