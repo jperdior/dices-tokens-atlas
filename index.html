@@ -26,7 +26,6 @@
   --shadow: #1F2340;       /* the solid drop */
   --tip: #1F2340; --tip-ink: #FFF8EC; --tip-title: #F6C21C;
   --focus: #12B5C9;        /* UITheme.FOCUS */
-  --coin: #F6C21C;         /* PA pips: the yellow of the d8 button */
   --war: #E0452B; --war-ink: #9A2414; --war-soft: #FFD9CF;
   --wiz: #7A4DE8; --wiz-ink: #4B2AA8; --wiz-soft: #E4DAFF;
   --pri: #E99B12; --pri-ink: #8A5406; --pri-soft: #FFE9B8;
@@ -119,9 +118,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* A card already validated (definitivas.txt): a green chip and a green frame. */
 .card .final { background: var(--rog); color: #fff }
 .card.is-final { border-color: var(--rog); box-shadow: 0 5px 0 var(--rog-ink) }
-.ap { display: inline-flex; align-items: center; gap: 3px }
-.ap i { width: 13px; height: 13px; border-radius: 50%; background: var(--coin); border: 2px solid #1F2340 }
-.ap span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0) }
+/* The cost: the card's own chip (HandCard._draw_cost_chip) — an ink disc with a
+   white inner ring and the number in white — and "PA" beside it. */
+.ap { display: inline-flex; align-items: center; gap: 5px; font: 800 12px/1 var(--body); color: var(--muted);
+  letter-spacing: .06em; white-space: nowrap }
+.ap b { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  background: #1F2340; box-shadow: inset 0 0 0 2px #1F2340, inset 0 0 0 4px #FFFFFF;
+  color: #FFFFFF; font: 400 17px/1 var(--display); letter-spacing: 0 }
 .desc { margin: 0; font-size: 15.5px; color: var(--body-ink); background: var(--cream); padding: 9px 11px;
   border-radius: 12px; border: 2px solid var(--line) }
 .kws { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font: 800 12px var(--body); text-transform: uppercase; letter-spacing: .06em }
@@ -157,7 +160,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <h1>Cartas de Dices &amp; Tokens</h1>
   <p>Las 72 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 32 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
-    <span><span class="ap"><i></i><i></i></span> coste en PA (se paga con el dado)</span>
+    <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
     <span>Definitivas: 14 de 72</span>
@@ -181,7 +184,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="grid"><article class="card r-common is-final" data-search="estocada combate con un enemigo a 3 casillas o menos. no te mueves. embestida definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Estocada</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -191,7 +194,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common is-final" data-search="furia tu guerrero queda enfurecido. furia definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Furia</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -201,7 +204,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common is-final" data-search="grito de guerra cada enemigo a 3 casillas o menos de tu guerrero queda debilitado. grito definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Grito de guerra</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -211,7 +214,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common is-final" data-search="pisotón cada ficha enemiga a 3 casillas o menos de tu guerrero queda trastabillado. pisoton definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Pisotón</h3>
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -221,7 +224,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common is-final" data-search="defensa puntiaguda tu guerrero gana espinas. defensa_puntiaguda definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Defensa puntiaguda</h3>
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -231,7 +234,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common is-final" data-search="fortificar una casilla a 5 o menos queda fortificado. fortificar definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Fortificar</h3>
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -241,7 +244,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common is-final" data-search="escudo de todos tu guerrero queda protector. escudo_de_todos definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Escudo de todos</h3>
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -251,7 +254,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon is-final" data-search="inquebrantable tu guerrero queda inquebrantable. inquebrantable definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Inquebrantable</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -261,7 +264,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon is-final" data-search="embestida tu guerrero carga contra un rival a 5 casillas o menos, delante o detrás, y pelea con él. si sobrevive, lo empuja 2 casillas en esa dirección. carguen definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Embestida</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -271,7 +274,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon is-final" data-search="tormenta de espadas ataca a todas las fichas enemigas a 3 casillas o menos de tu guerrero. torbellino definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Tormenta de espadas</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -281,7 +284,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon is-final" data-search="aquí conmigo tu guerrero queda implacable: quien esté trabado con él no puede huir. aqui_conmigo definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Aquí conmigo</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -291,7 +294,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon is-final" data-search="provocar tu guerrero queda desafiante: el próximo enemigo que vaya a pasar por su casilla se detiene y pelea con él. provocar definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Provocar</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -301,7 +304,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare is-final" data-search="última defensa tu guerrero queda protector e inquebrantable, y su casilla queda fortificado. ultima_defensa definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
       <h3>Última defensa</h3>
       <div class="meta"><span class="rar">Rara</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -311,7 +314,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare is-final" data-search="ensañarse tu guerrero queda encarnizado: su próximo combate se juega dos veces. ensanarse definitiva">
   <div class="body">
     <header>
-      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
       <h3>Ensañarse</h3>
       <div class="meta"><span class="rar">Rara</span><span class="final">✓ Definitiva</span></div>
     </header>
@@ -329,7 +332,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="grid"><article class="card r-common" data-search="chispa 1 de daño a un enemigo a 4 casillas o menos. chispa">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Chispa</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -339,7 +342,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="prestidigitación roba 2 cartas. tu mano no pasa de 10. prestidigitacion">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Prestidigitación</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -349,7 +352,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="mordisco helado 1 de daño a un enemigo a 2 casillas o menos, que queda escarchado. mordisco_helado">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Mordisco helado</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -359,7 +362,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="adivinación miras las 3 primeras cartas de tu mazo y descartas las que quieras. sólo tú las ves. adivinacion">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Adivinación</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -369,7 +372,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="ascua una casilla a 4 o menos queda ardiendo. ascua">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Ascua</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -379,7 +382,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="niebla una casilla a 4 o menos queda cubierta de niebla. niebla">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Niebla</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -389,7 +392,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="escarcha un enemigo a 4 casillas o menos queda escarchado. no se puede lanzar sobre quien ya está escarchado, congelado o silenciado. escarcha">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Escarcha</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -399,7 +402,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="¡congelar! un enemigo a 4 casillas o menos queda congelado. congelar">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>¡Congelar!</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -409,7 +412,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="parpadeo tu mago queda parpadeante: al coincidir con cualquier rival salta al azar 1-3 casillas, adelante o atrás, sin combate. parpadeo">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Parpadeo</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -419,7 +422,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="ventisca elige una casilla a 6 o menos: cada enemigo a 2 casillas o menos de ella queda escarchado. ventisca">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Ventisca</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -429,7 +432,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare" data-search="cadenas de hielo 3 casillas contiguas a 6 o menos quedan con hielo. cadenas_de_hielo cargas">
   <div class="body">
     <header>
-      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
       <h3>Cadenas de hielo</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
@@ -439,7 +442,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare" data-search="bola de fuego 2 de daño a cada ficha en una casilla a 4 o menos y en las de al lado, también a las tuyas. la casilla elegida queda ardiendo. bola_de_fuego">
   <div class="body">
     <header>
-      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
       <h3>Bola de fuego</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
@@ -457,7 +460,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="grid"><article class="card r-common" data-search="escudo una ficha tuya a 4 casillas o menos queda protegido. no se puede lanzar sobre quien ya lo está. escudo">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Escudo</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -467,7 +470,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="curación +1 pv a una ficha tuya herida a 4 casillas o menos. curacion">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Curación</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -477,7 +480,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="bendición una ficha tuya a 4 casillas o menos queda escudado. no se puede lanzar sobre quien ya lo está. bendicion">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Bendición</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -487,7 +490,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="purificar quita un estado negativo a una ficha tuya a 4 casillas o menos. purificar">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Purificar</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -497,7 +500,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="santuario una casilla a 4 o menos queda en santuario. santuario">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Santuario</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -507,7 +510,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="plegaria una ficha tuya a 4 casillas o menos queda regenerando 2: recupera 2 pv al empezar tu próximo turno. plegaria">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Plegaria</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -517,7 +520,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="fervor una ficha tuya a 4 casillas o menos queda enfurecido. fervor">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Fervor</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -527,7 +530,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="suelo sagrado dos casillas contiguas a 4 o menos quedan en santuario. suelo_sagrado">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Suelo sagrado</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -537,7 +540,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="¡silencio! un enemigo a 4 casillas o menos queda silenciado. silencio">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>¡Silencio!</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -547,7 +550,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="martirio tu sacerdote pierde 1 pv y una ficha tuya a 4 casillas o menos queda inquebrantable. no se puede jugar si dejaría a tu sacerdote en 0. martirio">
   <div class="body">
     <header>
-      <div class="ap" title="0 PA" aria-label="0 PA"><span>0 PA</span></div>
+      <div class="ap" title="Cuesta 0 PA"><b>0</b>PA</div>
       <h3>Martirio</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -557,7 +560,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="milagro +2 pv a una ficha tuya herida a 4 casillas o menos. milagro">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Milagro</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -567,7 +570,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare" data-search="intervención divina todas tus fichas del anillo quedan protegido hasta el inicio de tu próximo turno. intervencion">
   <div class="body">
     <header>
-      <div class="ap" title="4 PA" aria-label="4 PA"><i></i><i></i><i></i><i></i><span>4 PA</span></div>
+      <div class="ap" title="Cuesta 4 PA"><b>4</b>PA</div>
       <h3>Intervención divina</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
@@ -577,7 +580,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare" data-search="resurrección una ficha tuya en casa sale sobre un cadáver cualquiera del tablero, sin 5 y sin combate, y lo gasta. no vale si hay un rival en él. resurreccion">
   <div class="body">
     <header>
-      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
       <h3>Resurrección</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
@@ -595,7 +598,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="grid"><article class="card r-common" data-search="esquiva tu pícaro queda protegido. esquiva">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Esquiva</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -605,7 +608,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="robo el dueño de un enemigo a 4 casillas o menos descarta 1 carta al azar. robo">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Robo</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -615,7 +618,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="trampa pon una trampa en una casilla libre a 4 o menos que no sea seguro. trampa">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Trampa</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -625,7 +628,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="zancadilla un enemigo a 2 casillas o menos queda trastabillado. zancadilla">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Zancadilla</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -635,7 +638,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="ocultarse tu pícaro queda escondido. ocultarse">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Ocultarse</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -645,7 +648,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="piel de anguila tu pícaro queda escurridizo. piel_de_anguila">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Piel de anguila</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -655,7 +658,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="estaba ahí un rival elige una carta de su mano y la descarta. estaba_ahi">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Estaba ahí</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -665,7 +668,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="distracción un rival queda distraído: al final de su turno repone 4 cartas en vez de 5. distraccion">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Distracción</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -675,7 +678,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="paso sombrío tu pícaro avanza exactamente 3 casillas. si cae sobre un enemigo, pelea; si estaba escondido, con ataque furtivo. paso_sombrio">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Paso sombrío</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -685,7 +688,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="foso pon una trampa en hasta 2 casillas libres a 4 o menos que no sean seguro. foso cargas">
   <div class="body">
     <header>
-      <div class="ap" title="0 PA" aria-label="0 PA"><span>0 PA</span></div>
+      <div class="ap" title="Cuesta 0 PA"><b>0</b>PA</div>
       <h3>Foso</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -695,7 +698,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="marca un enemigo a 4 casillas o menos queda marcado. marca">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Marca</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -705,7 +708,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="chantaje miras la mano de un rival y eliges tú la carta que descarta. chantaje">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Chantaje</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -715,7 +718,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="de incógnito tu pícaro queda disfrazado. incognito">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>De incógnito</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -725,7 +728,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="afilar sólo si tu pícaro está escondido. queda enfurecido 2: +2 de daño en su próximo golpe. afilar">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Afilar</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -735,7 +738,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="emboscada tu pícaro salta sobre un enemigo hasta 4 casillas por delante y pelea; si estaba escondido, con ataque furtivo. emboscada">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Emboscada</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -745,7 +748,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="golpe bajo 1 de daño a un enemigo a 2 casillas o menos, que queda sangrando. golpe_bajo">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Golpe bajo</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -755,7 +758,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare" data-search="puñalada pelea con un enemigo sin trabar a 1 casilla o menos. tu golpe ignora su def y lleva ataque furtivo. punalada">
   <div class="body">
     <header>
-      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
       <h3>Puñalada</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
@@ -765,7 +768,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare" data-search="saqueo cada rival descarta 2 cartas al azar. saqueo cargas">
   <div class="body">
     <header>
-      <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
       <h3>Saqueo</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
@@ -783,7 +786,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="grid"><article class="card r-common" data-search="¡en marcha! una ficha tuya queda raudo. en_marcha">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>¡En marcha!</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial ×2</span></div>
     </header>
@@ -793,7 +796,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="reagrupar descarta tu mano y roba otras tantas cartas. reagrupar">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Reagrupar</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
@@ -803,7 +806,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="cambio de planes descarta 1 carta al azar y roba 2. cambio_de_planes">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Cambio de planes</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -813,7 +816,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="mano firme quedas sereno: tu próxima tirada podrás repetirla una vez. mano_firme">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Mano firme</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -823,7 +826,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="abrir la mente quedas con mente abierta: al final de este turno repones 7 cartas en vez de 5. abrir_la_mente">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Abrir la mente</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -833,7 +836,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="asegurar retaguardia una ficha tuya queda en repliegue: su próximo movimiento puede ir hacia atrás. retirada">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Asegurar retaguardia</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -843,7 +846,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="purga quita todos los estados negativos a una ficha tuya. purga">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Purga</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -853,7 +856,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="instrucción una ficha tuya gana 1 de experiencia. instruccion">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Instrucción</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -863,7 +866,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="arenga quedas estimulado: la próxima vez que juegues cartas tienes 1 pa más. arenga">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Arenga</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -873,7 +876,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-uncommon" data-search="¡a las armas! saca una ficha de casa a tu salida, sin 5 y sin combate. necesita la salida libre. leva única cargas">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>¡A las armas!</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
@@ -883,7 +886,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare" data-search="dados cargados tu próxima tirada la subes o bajas 1, tú eliges. a cambio quedas con resuello: la próxima vez que juegues cartas tienes 1 pa menos. dados_cargados">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Dados cargados</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
@@ -893,7 +896,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-rare" data-search="momento decisivo tu próxima tirada es un 6. momento_decisivo cargas">
   <div class="body">
     <header>
-      <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
       <h3>Momento decisivo</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
@@ -911,7 +914,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="grid"><article class="card r-common" data-search="invocación saca una ficha de casa a tu salida, sin 5 y sin combate. necesita la salida libre. invocacion única cargas">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Invocación</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -921,7 +924,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="corona una ficha tuya llegó a la meta. esta carta no hace nada. corona">
   <div class="body">
     <header>
-      <div class="ap" title="0 PA" aria-label="0 PA"><span>0 PA</span></div>
+      <div class="ap" title="Cuesta 0 PA"><b>0</b>PA</div>
       <h3>Corona</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -931,7 +934,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </article><article class="card r-common" data-search="catapulta lanza una ficha tuya exactamente 20 casillas. raudo, trastabillado y demás no cuentan. catapulta única cargas">
   <div class="body">
     <header>
-      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Catapulta</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
@@ -1364,7 +1367,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>c97fd39</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>99dcfbe</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
