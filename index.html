@@ -155,18 +155,18 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="wrap intro">
   <h1>Cartas de Dices &amp; Tokens</h1>
-  <p>Las 71 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 31 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
+  <p>Las 71 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 32 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
     <span><span class="ap"><i></i><i></i></span> coste en PA (se paga con el dado)</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 12 de 71</span>
+    <span>Definitivas: 13 de 71</span>
   </div>
 </div>
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>13</small></a><a href="#wizard" class="a-wiz">Mago<small>12</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>31</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>13</small></a><a href="#wizard" class="a-wiz">Mago<small>12</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>32</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
     <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
   </div>
 </div>
@@ -298,14 +298,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Protector<span class="tip" role="tooltip"><b>Protector</b>El próximo daño de golpe o de carta que iba a un aliado a 3 casillas o menos lo recibes tú.</span></span> e <span class="term" tabindex="0">Inquebrantable<span class="tip" role="tooltip"><b>Inquebrantable</b>La próxima vez que morirías, sobrevives con 1 PV.</span></span>, y su casilla queda <span class="term" tabindex="0">Fortificado<span class="tip" role="tooltip"><b>Fortificado</b>Quien pelee en esta casilla tiene +1 DEF: puede dejar el golpe en 0.</span></span>.</p>
     
   </div>
-</article><article class="card r-rare" data-search="ejecución pelea con un enemigo sin trabar a 2 casillas o menos. si tiene 2 pv o menos, muere en el acto. ejecucion">
+</article><article class="card r-rare is-final" data-search="ensañarse tu guerrero queda encarnizado: su próximo combate se juega dos veces. ensanarse definitiva">
   <div class="body">
     <header>
       <div class="ap" title="3 PA" aria-label="3 PA"><i></i><i></i><i></i><span>3 PA</span></div>
-      <h3>Ejecución</h3>
-      <div class="meta"><span class="rar">Rara</span></div>
+      <h3>Ensañarse</h3>
+      <div class="meta"><span class="rar">Rara</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Pelea con un enemigo sin trabar a 2 casillas o menos. Si tiene 2 PV o menos, muere en el acto.</p>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Encarnizado<span class="tip" role="tooltip"><b>Encarnizado</b>Tu próximo combate se juega dos veces, ataques tú o te ataquen. Si ambos siguen en pie, hay otro completo.</span></span>: su próximo combate se juega dos veces.</p>
     
   </div>
 </article></div>
@@ -934,7 +934,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Estados de ficha</h2>
     <p>Lo que lleva encima una ficha.</p>
-    <p class="tally">31 estados</p>
+    <p class="tally">32 estados</p>
   </div>
   <div class="grid"><article class="card status" data-search="espinas el próximo enemigo que te dañe recibe 1 de vuelta. thorns defensa puntiaguda">
   <div class="body">
@@ -1106,6 +1106,15 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     </header>
     <p class="desc">Tu próximo golpe hace el doble de daño, después de restar la DEF.</p>
     <p class="named">Lo nombran: Puñalada, Paso sombrío, Emboscada</p>
+  </div>
+</article><article class="card status" data-search="encarnizado tu próximo combate se juega dos veces, ataques tú o te ataquen. si ambos siguen en pie, hay otro completo. bloodthirsty ensañarse">
+  <div class="body">
+    <header>
+      <h3>Encarnizado</h3>
+      <div class="meta"><span class="positive">Beneficioso</span></div>
+    </header>
+    <p class="desc">Tu próximo combate se juega dos veces, ataques tú o te ataquen. Si ambos siguen en pie, hay otro completo.</p>
+    <p class="named">Lo nombran: Ensañarse</p>
   </div>
 </article><article class="card status" data-search="debilitado -1 de daño en tu próximo golpe. puede dejarlo en 0. weakened grito de guerra">
   <div class="body">
@@ -1345,7 +1354,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>8a96ce9</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>346297c</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
