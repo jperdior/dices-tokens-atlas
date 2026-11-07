@@ -1,6 +1,9 @@
-<title>Cartas de Dices & Tokens</title>
+<!doctype html>
+<html lang="es">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cartas de Dices &amp; Tokens</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;800&display=swap">
 <style>
@@ -144,8 +147,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .empty { padding-block: 40px; color: var(--muted) }
 footer { padding-block: 40px; color: var(--muted); font-size: 13px }
 footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; border-radius: 5px; border: 1px solid var(--muted) }
-@media (max-width: 520px) { .bar input { flex: 1 1 100% } .pool { scroll-margin-top: 120px } }
+/* On a phone the bar wraps to a third of the screen: it scrolls away. */
+@media (max-width: 520px) { .bar { position: static } .bar input { flex: 1 1 100% } .pool { scroll-margin-top: 0 } }
 </style>
+</head>
+<body>
 
 <div class="wrap intro">
   <h1>Cartas de Dices &amp; Tokens</h1>
@@ -172,14 +178,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p>Cuerpo a cuerpo: pelea, aguanta y protege a los suyos.</p>
     <p class="tally">12 cartas · 6 comunes · 4 infrecuentes · 2 raras</p>
   </div>
-  <div class="grid"><article class="card r-common" data-search="estocada lucha contra un enemigo 1-2 casillas por delante que esté solo en su casilla y sin trabar. no te mueves. embestida">
+  <div class="grid"><article class="card r-common" data-search="estocada combate con un enemigo a 3 casillas o menos. no te mueves. embestida">
   <div class="body">
     <header>
       <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
       <h3>Estocada</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
-    <p class="desc">Lucha contra un enemigo 1-2 casillas por delante que esté solo en su casilla y sin trabar. No te mueves.</p>
+    <p class="desc">Combate con un enemigo a 3 casillas o menos. No te mueves.</p>
     
   </div>
 </article><article class="card r-common" data-search="furia tu guerrero queda enfurecido. furia">
@@ -189,7 +195,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Furia</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
-    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño. Si tienes varias cargas, hace +1 por carga y gasta una.</span></span>.</p>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe.</span></span>.</p>
     
   </div>
 </article><article class="card r-common" data-search="grito de guerra cada enemigo en la casilla de tu guerrero o en las de al lado queda debilitado. grito">
@@ -478,14 +484,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Una casilla a 4 o menos queda en <span class="term" tabindex="0">Santuario<span class="tip" role="tooltip"><b>Santuario</b>Aquí no puede haber combate.</span></span>.</p>
     
   </div>
-</article><article class="card r-common" data-search="plegaria una ficha tuya a 4 casillas o menos queda regenerando 2: recupera 1 pv al empezar cada uno de tus dos próximos turnos. plegaria">
+</article><article class="card r-common" data-search="plegaria una ficha tuya a 4 casillas o menos queda regenerando 2: recupera 2 pv al empezar tu próximo turno. plegaria">
   <div class="body">
     <header>
       <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
       <h3>Plegaria</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
-    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Regenerando<span class="tip" role="tooltip"><b>Regenerando</b>Recuperas 1 PV al empezar tu turno, una vez por cada carga.</span></span> 2: recupera 1 PV al empezar cada uno de tus dos próximos turnos.</p>
+    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Regenerando<span class="tip" role="tooltip"><b>Regenerando</b>Al empezar tu próximo turno recuperas 1 PV por cada punto (con 2, 2 PV) y se va.</span></span> 2: recupera 2 PV al empezar tu próximo turno.</p>
     
   </div>
 </article><article class="card r-common" data-search="fervor una ficha tuya a 4 casillas o menos queda enfurecido. fervor">
@@ -495,7 +501,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Fervor</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
-    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño. Si tienes varias cargas, hace +1 por carga y gasta una.</span></span>.</p>
+    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe.</span></span>.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="suelo sagrado dos casillas contiguas a 4 o menos quedan en santuario. suelo_sagrado">
@@ -696,14 +702,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Tu Pícaro queda <span class="term" tabindex="0">Disfrazado<span class="tip" role="tooltip"><b>Disfrazado</b>Ninguna carta lanzada desde fuera de tu casilla puede apuntarte. Se acaba al quedar trabado.</span></span>.</p>
     
   </div>
-</article><article class="card r-uncommon" data-search="afilar sólo si tu pícaro está escondido. queda enfurecido 2: +2 de daño en su próximo golpe y +1 en el siguiente. afilar">
+</article><article class="card r-uncommon" data-search="afilar sólo si tu pícaro está escondido. queda enfurecido 2: +2 de daño en su próximo golpe. afilar">
   <div class="body">
     <header>
       <div class="ap" title="2 PA" aria-label="2 PA"><i></i><i></i><span>2 PA</span></div>
       <h3>Afilar</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
-    <p class="desc">Sólo si tu Pícaro está <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>. Queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño. Si tienes varias cargas, hace +1 por carga y gasta una.</span></span> 2: +2 de daño en su próximo golpe y +1 en el siguiente.</p>
+    <p class="desc">Sólo si tu Pícaro está <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>. Queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe.</span></span> 2: +2 de daño en su próximo golpe.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="emboscada tu pícaro salta sobre un enemigo hasta 4 casillas por delante y pelea; si estaba escondido, con ataque furtivo. emboscada">
@@ -956,13 +962,13 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Ninguna carta lanzada desde fuera de tu casilla puede apuntarte. Se acaba al quedar trabado.</p>
     <p class="named">Lo nombran: De incógnito</p>
   </div>
-</article><article class="card status" data-search="regenerando recuperas 1 pv al empezar tu turno, una vez por cada carga. regenerating plegaria">
+</article><article class="card status" data-search="regenerando al empezar tu próximo turno recuperas 1 pv por cada punto (con 2, 2 pv) y se va. regenerating plegaria">
   <div class="body">
     <header>
       <h3>Regenerando</h3>
       <div class="meta"><span class="positive">Beneficioso</span><span>Acumulable</span></div>
     </header>
-    <p class="desc">Recuperas 1 PV al empezar tu turno, una vez por cada carga.</p>
+    <p class="desc">Al empezar tu próximo turno recuperas 1 PV por cada punto (con 2, 2 PV) y se va.</p>
     <p class="named">Lo nombran: Plegaria</p>
   </div>
 </article><article class="card status" data-search="repliegue tu próximo movimiento puedes resolverlo hacia atrás. backpedal asegurar retaguardia">
@@ -1064,13 +1070,13 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</p>
     <p class="named">Lo nombran: Escudo, Esquiva, Intervención divina</p>
   </div>
-</article><article class="card status" data-search="enfurecido tu próximo golpe hace +1 de daño. si tienes varias cargas, hace +1 por carga y gasta una. surged furia afilar fervor">
+</article><article class="card status" data-search="enfurecido tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe. surged furia afilar fervor">
   <div class="body">
     <header>
       <h3>Enfurecido</h3>
       <div class="meta"><span class="positive">Beneficioso</span><span>Acumulable</span></div>
     </header>
-    <p class="desc">Tu próximo golpe hace +1 de daño. Si tienes varias cargas, hace +1 por carga y gasta una.</p>
+    <p class="desc">Tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe.</p>
     <p class="named">Lo nombran: Furia, Afilar, Fervor</p>
   </div>
 </article><article class="card status" data-search="ataque furtivo tu próximo golpe hace el doble de daño, después de restar la def. double strike puñalada paso sombrío emboscada">
@@ -1320,7 +1326,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>5dc61ea</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>cd83739</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
@@ -1341,3 +1347,5 @@ q.addEventListener('input', () => {
   none.hidden = any;
 });
 </script>
+</body>
+</html>
