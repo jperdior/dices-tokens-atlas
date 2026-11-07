@@ -160,7 +160,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span><span class="ap"><i></i><i></i></span> coste en PA (se paga con el dado)</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 2 de 70</span>
+    <span>Definitivas: 3 de 70</span>
   </div>
 </div>
 
@@ -208,14 +208,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Cada enemigo en la casilla de tu Guerrero o en las de al lado queda <span class="term" tabindex="0">Debilitado<span class="tip" role="tooltip"><b>Debilitado</b>-1 de daño en tu próximo golpe. Puede dejarlo en 0.</span></span>.</p>
     
   </div>
-</article><article class="card r-common" data-search="pisotón un enemigo a 2 casillas o menos queda enraizado. pisoton">
+</article><article class="card r-common is-final" data-search="pisotón cada ficha enemiga a 3 casillas o menos de tu guerrero queda trastabillado. pisoton definitiva">
   <div class="body">
     <header>
       <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
       <h3>Pisotón</h3>
-      <div class="meta"><span class="rar">Común</span></div>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Un enemigo a 2 casillas o menos queda <span class="term" tabindex="0">Enraizado<span class="tip" role="tooltip"><b>Enraizado</b>No te mueves ni puedes huir, pero peleas con normalidad.</span></span>.</p>
+    <p class="desc">Cada ficha enemiga a 3 casillas o menos de tu Guerrero queda <span class="term" tabindex="0">Trastabillado<span class="tip" role="tooltip"><b>Trastabillado</b>Tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos.</span></span>.</p>
     
   </div>
 </article><article class="card r-common" data-search="sangre y acero tu guerrero queda vengativo. sangre_y_acero">
@@ -989,14 +989,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Recibes 1 de daño la próxima vez que te muevas. Si no te mueves, no sangras.</p>
     <p class="named">Lo nombran: Golpe bajo</p>
   </div>
-</article><article class="card status" data-search="trastabillado tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos. tripped zancadilla">
+</article><article class="card status" data-search="trastabillado tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos. tripped pisotón zancadilla">
   <div class="body">
     <header>
       <h3>Trastabillado</h3>
       <div class="meta"><span class="negative">Perjudicial</span><span>Acumulable</span></div>
     </header>
     <p class="desc">Tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos.</p>
-    <p class="named">Lo nombran: Zancadilla</p>
+    <p class="named">Lo nombran: Pisotón, Zancadilla</p>
   </div>
 </article><article class="card status" data-search="escarchado las cartas de tu clase cuestan 1 pa más. si te vuelven a escarchar, quedas congelado. chilled mordisco helado escarcha ventisca">
   <div class="body">
@@ -1016,14 +1016,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">No te mueves, no lanzas cartas de tu clase y no peleas. El primer golpe te hace +1 y rompe el hielo.</p>
     <p class="named">Lo nombran: ¡Congelar!</p>
   </div>
-</article><article class="card status" data-search="enraizado no te mueves ni puedes huir, pero peleas con normalidad. rooted pisotón">
+</article><article class="card status" data-search="enraizado no te mueves ni puedes huir, pero peleas con normalidad. rooted">
   <div class="body">
     <header>
       <h3>Enraizado</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
     <p class="desc">No te mueves ni puedes huir, pero peleas con normalidad.</p>
-    <p class="named">Lo nombran: Pisotón</p>
+    
   </div>
 </article><article class="card status" data-search="imparable al empezar tu próximo movimiento se va todo lo que lo impida. unstoppable">
   <div class="body">
@@ -1326,7 +1326,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>730a072</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>44d0b1d</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
