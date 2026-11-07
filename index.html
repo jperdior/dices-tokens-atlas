@@ -160,7 +160,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span><span class="ap"><i></i><i></i></span> coste en PA (se paga con el dado)</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 3 de 70</span>
+    <span>Definitivas: 4 de 70</span>
   </div>
 </div>
 
@@ -188,14 +188,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Combate con un enemigo a 3 casillas o menos. No te mueves.</p>
     
   </div>
-</article><article class="card r-common" data-search="furia tu guerrero queda enfurecido. furia">
+</article><article class="card r-common is-final" data-search="furia tu guerrero queda enfurecido. furia definitiva">
   <div class="body">
     <header>
       <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
       <h3>Furia</h3>
-      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe.</span></span>.</p>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>+1 de daño en tu próximo golpe; +2 con Enfurecido 2.</span></span>.</p>
     
   </div>
 </article><article class="card r-common" data-search="grito de guerra cada enemigo en la casilla de tu guerrero o en las de al lado queda debilitado. grito">
@@ -501,7 +501,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Fervor</h3>
       <div class="meta"><span class="rar">Común</span></div>
     </header>
-    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe.</span></span>.</p>
+    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>+1 de daño en tu próximo golpe; +2 con Enfurecido 2.</span></span>.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="suelo sagrado dos casillas contiguas a 4 o menos quedan en santuario. suelo_sagrado">
@@ -709,7 +709,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Afilar</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
-    <p class="desc">Sólo si tu Pícaro está <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>. Queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe.</span></span> 2: +2 de daño en su próximo golpe.</p>
+    <p class="desc">Sólo si tu Pícaro está <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>. Queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>+1 de daño en tu próximo golpe; +2 con Enfurecido 2.</span></span> 2: +2 de daño en su próximo golpe.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="emboscada tu pícaro salta sobre un enemigo hasta 4 casillas por delante y pelea; si estaba escondido, con ataque furtivo. emboscada">
@@ -1070,13 +1070,13 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</p>
     <p class="named">Lo nombran: Escudo, Esquiva, Intervención divina</p>
   </div>
-</article><article class="card status" data-search="enfurecido tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe. surged furia afilar fervor">
+</article><article class="card status" data-search="enfurecido +1 de daño en tu próximo golpe; +2 con enfurecido 2. surged furia afilar fervor">
   <div class="body">
     <header>
       <h3>Enfurecido</h3>
       <div class="meta"><span class="positive">Beneficioso</span><span>Acumulable</span></div>
     </header>
-    <p class="desc">Tu próximo golpe hace +1 de daño por cada punto (con 2, +2) y se gasta en ese golpe.</p>
+    <p class="desc">+1 de daño en tu próximo golpe; +2 con Enfurecido 2.</p>
     <p class="named">Lo nombran: Furia, Afilar, Fervor</p>
   </div>
 </article><article class="card status" data-search="ataque furtivo tu próximo golpe hace el doble de daño, después de restar la def. double strike puñalada paso sombrío emboscada">
@@ -1326,7 +1326,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>44d0b1d</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>82d3cb2</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
