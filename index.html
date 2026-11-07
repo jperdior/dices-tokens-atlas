@@ -155,18 +155,18 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="wrap intro">
   <h1>Cartas de Dices &amp; Tokens</h1>
-  <p>Las 71 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 32 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
+  <p>Las 72 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 32 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
     <span><span class="ap"><i></i><i></i></span> coste en PA (se paga con el dado)</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 13 de 71</span>
+    <span>Definitivas: 13 de 72</span>
   </div>
 </div>
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>13</small></a><a href="#wizard" class="a-wiz">Mago<small>12</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>32</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>12</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>32</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
     <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
   </div>
 </div>
@@ -176,7 +176,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Guerrero</h2>
     <p>Cuerpo a cuerpo: pelea, aguanta y protege a los suyos.</p>
-    <p class="tally">13 cartas · 6 comunes · 5 infrecuentes · 2 raras</p>
+    <p class="tally">14 cartas · 7 comunes · 5 infrecuentes · 2 raras</p>
   </div>
   <div class="grid"><article class="card r-common is-final" data-search="estocada combate con un enemigo a 3 casillas o menos. no te mueves. embestida definitiva">
   <div class="body">
@@ -226,6 +226,16 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
     <p class="desc">Tu Guerrero gana <span class="term" tabindex="0">Espinas<span class="tip" role="tooltip"><b>Espinas</b>El próximo enemigo que te dañe recibe 1 de vuelta.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="fortificar una casilla a 5 o menos queda fortificado. fortificar">
+  <div class="body">
+    <header>
+      <div class="ap" title="1 PA" aria-label="1 PA"><i></i><span>1 PA</span></div>
+      <h3>Fortificar</h3>
+      <div class="meta"><span class="rar">Común</span></div>
+    </header>
+    <p class="desc">Una casilla a 5 o menos queda <span class="term" tabindex="0">Fortificado<span class="tip" role="tooltip"><b>Fortificado</b>El próximo daño que se reciba en esta casilla se reduce en 1.</span></span>.</p>
     
   </div>
 </article><article class="card r-common is-final" data-search="escudo de todos tu guerrero queda protector. escudo_de_todos definitiva">
@@ -295,7 +305,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Última defensa</h3>
       <div class="meta"><span class="rar">Rara</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Protector<span class="tip" role="tooltip"><b>Protector</b>El próximo daño de golpe o de carta que iba a un aliado a 3 casillas o menos lo recibes tú.</span></span> e <span class="term" tabindex="0">Inquebrantable<span class="tip" role="tooltip"><b>Inquebrantable</b>La próxima vez que morirías, sobrevives con 1 PV.</span></span>, y su casilla queda <span class="term" tabindex="0">Fortificado<span class="tip" role="tooltip"><b>Fortificado</b>Quien pelee en esta casilla tiene +1 DEF: puede dejar el golpe en 0.</span></span>.</p>
+    <p class="desc">Tu Guerrero queda <span class="term" tabindex="0">Protector<span class="tip" role="tooltip"><b>Protector</b>El próximo daño de golpe o de carta que iba a un aliado a 3 casillas o menos lo recibes tú.</span></span> e <span class="term" tabindex="0">Inquebrantable<span class="tip" role="tooltip"><b>Inquebrantable</b>La próxima vez que morirías, sobrevives con 1 PV.</span></span>, y su casilla queda <span class="term" tabindex="0">Fortificado<span class="tip" role="tooltip"><b>Fortificado</b>El próximo daño que se reciba en esta casilla se reduce en 1.</span></span>.</p>
     
   </div>
 </article><article class="card r-rare is-final" data-search="ensañarse tu guerrero queda encarnizado: su próximo combate se juega dos veces. ensanarse definitiva">
@@ -1125,13 +1135,13 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">-1 de daño en tu próximo golpe. Puede dejarlo en 0.</p>
     <p class="named">Lo nombran: Grito de guerra</p>
   </div>
-</article><article class="card status" data-search="expuesto tu def de clase cuenta como 0 en tu próximo combate. escudado y fortificado siguen contando. exposed">
+</article><article class="card status" data-search="expuesto tu def de clase cuenta como 0 en tu próximo combate. escudado sigue contando. exposed">
   <div class="body">
     <header>
       <h3>Expuesto</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
-    <p class="desc">Tu DEF de clase cuenta como 0 en tu próximo combate. Escudado y Fortificado siguen contando.</p>
+    <p class="desc">Tu DEF de clase cuenta como 0 en tu próximo combate. Escudado sigue contando.</p>
     
   </div>
 </article><article class="card status" data-search="drenado los próximos pv que recuperarías se quedan en 0. drained">
@@ -1259,14 +1269,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</p>
     <p class="named">Lo nombran: Resurrección</p>
   </div>
-</article><article class="card status" data-search="fortificado quien pelee en esta casilla tiene +1 def: puede dejar el golpe en 0. fortified última defensa">
+</article><article class="card status" data-search="fortificado el próximo daño que se reciba en esta casilla se reduce en 1. fortified fortificar última defensa">
   <div class="body">
     <header>
       <h3>Fortificado</h3>
       <div class="meta"><span class="positive">Beneficioso</span></div>
     </header>
-    <p class="desc">Quien pelee en esta casilla tiene +1 DEF: puede dejar el golpe en 0.</p>
-    <p class="named">Lo nombran: Última defensa</p>
+    <p class="desc">El próximo daño que se reciba en esta casilla se reduce en 1.</p>
+    <p class="named">Lo nombran: Fortificar, Última defensa</p>
   </div>
 </article><article class="card status" data-search="arenas movedizas quien termina aquí su movimiento queda trastabillado. quicksand">
   <div class="body">
@@ -1354,7 +1364,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>4ef8d2d</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>2035d89</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
