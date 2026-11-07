@@ -163,7 +163,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 16 de 72</span>
+    <span>Definitivas: 17 de 72</span>
   </div>
 </div>
 
@@ -339,16 +339,6 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">1 de daño a un enemigo a 4 casillas o menos.</p>
     
   </div>
-</article><article class="card r-common" data-search="prestidigitación roba 2 cartas. tu mano no pasa de 10. prestidigitacion">
-  <div class="body">
-    <header>
-      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Prestidigitación</h3>
-      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
-    </header>
-    <p class="desc">Roba 2 cartas. Tu mano no pasa de 10.</p>
-    
-  </div>
 </article><article class="card r-common" data-search="mordisco helado 1 de daño a un enemigo a 2 casillas o menos, que queda escarchado. mordisco_helado">
   <div class="body">
     <header>
@@ -357,6 +347,16 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <div class="meta"><span class="rar">Común</span></div>
     </header>
     <p class="desc">1 de daño a un enemigo a 2 casillas o menos, que queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common" data-search="escarcha un enemigo a 4 casillas o menos queda escarchado. no se puede lanzar sobre quien ya está escarchado, congelado o silenciado. escarcha">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Escarcha</h3>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+    </header>
+    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>. No se puede lanzar sobre quien ya está Escarchado, Congelado o Silenciado.</p>
     
   </div>
 </article><article class="card r-common" data-search="adivinación miras las 3 primeras cartas de tu mazo y descartas las que quieras. sólo tú las ves. adivinacion">
@@ -389,14 +389,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Una casilla a 4 o menos queda cubierta de <span class="term" tabindex="0">Niebla<span class="tip" role="tooltip"><b>Niebla</b>Nadie ve ni puede apuntar a quien esté aquí, ni desde dentro, y no hay combate. Los cuerpos siguen bloqueando el paso.</span></span>.</p>
     
   </div>
-</article><article class="card r-uncommon" data-search="escarcha un enemigo a 4 casillas o menos queda escarchado. no se puede lanzar sobre quien ya está escarchado, congelado o silenciado. escarcha">
+</article><article class="card r-uncommon is-final" data-search="prestidigitación roba 2 cartas. prestidigitacion definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Escarcha</h3>
-      <div class="meta"><span class="rar">Infrecuente</span><span class="start">Mazo inicial</span></div>
+      <h3>Prestidigitación</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="start">Mazo inicial</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>. No se puede lanzar sobre quien ya está Escarchado, Congelado o Silenciado.</p>
+    <p class="desc">Roba 2 cartas.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="¡congelar! un enemigo a 4 casillas o menos queda congelado. congelar">
@@ -1367,7 +1367,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>967b9a3</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>eabd91d</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
