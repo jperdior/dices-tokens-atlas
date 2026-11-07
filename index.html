@@ -163,7 +163,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 24 de 73</span>
+    <span>Definitivas: 25 de 73</span>
   </div>
 </div>
 
@@ -507,14 +507,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Quita un estado negativo a una ficha tuya a 4 casillas o menos.</p>
     
   </div>
-</article><article class="card r-common" data-search="santuario una casilla a 4 o menos queda en santuario. santuario">
+</article><article class="card r-common is-final" data-search="zona sagrada una casilla a 4 o menos queda en santuario. santuario definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Santuario</h3>
-      <div class="meta"><span class="rar">Común</span></div>
+      <h3>Zona sagrada</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Una casilla a 4 o menos queda en <span class="term" tabindex="0">Santuario<span class="tip" role="tooltip"><b>Santuario</b>Aquí no puede haber combate.</span></span>.</p>
+    <p class="desc">Una casilla a 4 o menos queda en <span class="term" tabindex="0">Santuario<span class="tip" role="tooltip"><b>Santuario</b>Cancela el siguiente combate que fuera a haber aquí, y se va.</span></span>.</p>
     
   </div>
 </article><article class="card r-common" data-search="plegaria una ficha tuya a 4 casillas o menos queda regenerando 2: recupera 2 pv al empezar tu próximo turno. plegaria">
@@ -544,7 +544,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Suelo sagrado</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
-    <p class="desc">Dos casillas contiguas a 4 o menos quedan en <span class="term" tabindex="0">Santuario<span class="tip" role="tooltip"><b>Santuario</b>Aquí no puede haber combate.</span></span>.</p>
+    <p class="desc">Dos casillas contiguas a 4 o menos quedan en <span class="term" tabindex="0">Santuario<span class="tip" role="tooltip"><b>Santuario</b>Cancela el siguiente combate que fuera a haber aquí, y se va.</span></span>.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="¡silencio! un enemigo a 4 casillas o menos queda silenciado. silencio">
@@ -1345,14 +1345,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Quien acaba aquí su movimiento resbala 1 casilla más y queda Trastabillado.</p>
     <p class="named">Lo nombran: Cadenas de hielo</p>
   </div>
-</article><article class="card status" data-search="santuario aquí no puede haber combate. sanctuary suelo sagrado santuario">
+</article><article class="card status" data-search="santuario cancela el siguiente combate que fuera a haber aquí, y se va. sanctuary suelo sagrado zona sagrada">
   <div class="body">
     <header>
       <h3>Santuario</h3>
       <div class="meta"></div>
     </header>
-    <p class="desc">Aquí no puede haber combate.</p>
-    <p class="named">Lo nombran: Suelo sagrado, Santuario</p>
+    <p class="desc">Cancela el siguiente combate que fuera a haber aquí, y se va.</p>
+    <p class="named">Lo nombran: Suelo sagrado, Zona sagrada</p>
   </div>
 </article><article class="card status" data-search="trampa invisible para los rivales. el primer enemigo que entre se para aquí y recibe 1 de daño. máximo 3 por jugador: la cuarta quita la más vieja. trapped foso trampa">
   <div class="body">
@@ -1395,7 +1395,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>7bee9db</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>c982538</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
