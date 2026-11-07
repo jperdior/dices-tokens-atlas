@@ -163,7 +163,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 23 de 73</span>
+    <span>Definitivas: 24 de 73</span>
   </div>
 </div>
 
@@ -449,14 +449,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">3 casillas contiguas a 6 o menos quedan con <span class="term" tabindex="0">Hielo<span class="tip" role="tooltip"><b>Hielo</b>Quien acaba aquí su movimiento resbala 1 casilla más y queda Trastabillado.</span></span>.</p>
     <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
   </div>
-</article><article class="card r-rare" data-search="bola de fuego 2 de daño a cada ficha en una casilla a 4 o menos y en las de al lado, también a las tuyas. la casilla elegida queda ardiendo. bola_de_fuego">
+</article><article class="card r-rare is-final" data-search="bola de fuego elige una casilla a 5 o menos: cada ficha y esbirro en ella y en las de al lado recibe 2 de daño y queda ardiendo, también los tuyos. bola_de_fuego definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
       <h3>Bola de fuego</h3>
-      <div class="meta"><span class="rar">Rara</span></div>
+      <div class="meta"><span class="rar">Rara</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">2 de daño a cada ficha en una casilla a 4 o menos y en las de al lado, también a las tuyas. La casilla elegida queda <span class="term" tabindex="0">Ardiendo<span class="tip" role="tooltip"><b>Ardiendo</b>La primera ficha que pase por aquí queda Ardiendo; si es un esbirro, recibe 1 de daño. Luego se apaga.</span></span>.</p>
+    <p class="desc">Elige una casilla a 5 o menos: cada ficha y esbirro en ella y en las de al lado recibe 2 de daño y queda <span class="term" tabindex="0">Ardiendo<span class="tip" role="tooltip"><b>Ardiendo</b>La próxima carta de tu clase que juegues te cuesta 1 PV, y se apaga.</span></span>, también los tuyos.</p>
     
   </div>
 </article></div>
@@ -1049,14 +1049,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">No te mueves, no lanzas cartas de tu clase y no peleas. El primer golpe te hace +1 y rompe el hielo.</p>
     <p class="named">Lo nombran: ¡Congelar!</p>
   </div>
-</article><article class="card status" data-search="ardiendo la próxima carta de tu clase que juegues te cuesta 1 pv, y se apaga. burning">
+</article><article class="card status" data-search="ardiendo la próxima carta de tu clase que juegues te cuesta 1 pv, y se apaga. burning bola de fuego">
   <div class="body">
     <header>
       <h3>Ardiendo</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
     <p class="desc">La próxima carta de tu clase que juegues te cuesta 1 PV, y se apaga.</p>
-    
+    <p class="named">Lo nombran: Bola de fuego</p>
   </div>
 </article><article class="card status" data-search="mojado calado hasta los huesos. wet">
   <div class="body">
@@ -1273,14 +1273,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p>Lo que hay en el suelo: afecta a quien pisa o cruza la casilla.</p>
     <p class="tally">13 estados</p>
   </div>
-  <div class="grid"><article class="card status" data-search="ardiendo la primera ficha que pase por aquí queda ardiendo; si es un esbirro, recibe 1 de daño. luego se apaga. burning ascua bola de fuego">
+  <div class="grid"><article class="card status" data-search="ardiendo la primera ficha que pase por aquí queda ardiendo; si es un esbirro, recibe 1 de daño. luego se apaga. burning ascua">
   <div class="body">
     <header>
       <h3>Ardiendo</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
     <p class="desc">La primera ficha que pase por aquí queda Ardiendo; si es un esbirro, recibe 1 de daño. Luego se apaga.</p>
-    <p class="named">Lo nombran: Ascua, Bola de fuego</p>
+    <p class="named">Lo nombran: Ascua</p>
   </div>
 </article><article class="card status" data-search="niebla nadie ve ni puede apuntar a quien esté aquí, ni desde dentro, y no hay combate. los cuerpos siguen bloqueando el paso. fog niebla">
   <div class="body">
@@ -1395,7 +1395,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>f69d81d</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>7bee9db</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
