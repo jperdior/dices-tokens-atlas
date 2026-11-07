@@ -158,18 +158,18 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="wrap intro">
   <h1>Cartas de Dices &amp; Tokens</h1>
-  <p>Las 73 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 32 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
+  <p>Las 73 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 34 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 21 de 73</span>
+    <span>Definitivas: 22 de 73</span>
   </div>
 </div>
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>13</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>32</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>13</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
     <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
   </div>
 </div>
@@ -356,7 +356,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Escarcha</h3>
       <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
-    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>. No se puede lanzar sobre quien ya está Escarchado, Congelado o Silenciado.</p>
+    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más.</span></span>. No se puede lanzar sobre quien ya está Escarchado, Congelado o Silenciado.</p>
     
   </div>
 </article><article class="card r-common is-final" data-search="adivinación miras las 3 primeras cartas de tu mazo y descartas las que quieras. adivinacion definitiva">
@@ -369,14 +369,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Miras las 3 primeras cartas de tu mazo y descartas las que quieras.</p>
     
   </div>
-</article><article class="card r-common" data-search="ascua una casilla a 4 o menos queda ardiendo. ascua">
+</article><article class="card r-common is-final" data-search="ascua una casilla vacía a 4 o menos queda ardiendo. ascua definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Ascua</h3>
-      <div class="meta"><span class="rar">Común</span></div>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Una casilla a 4 o menos queda <span class="term" tabindex="0">Ardiendo<span class="tip" role="tooltip"><b>Ardiendo</b>Quien termina aquí su movimiento recibe 1 de daño.</span></span>.</p>
+    <p class="desc">Una casilla vacía a 4 o menos queda <span class="term" tabindex="0">Ardiendo<span class="tip" role="tooltip"><b>Ardiendo</b>La primera ficha que pase por aquí queda Ardiendo; si es un esbirro, recibe 1 de daño. Luego se apaga.</span></span>.</p>
     
   </div>
 </article><article class="card r-common is-final" data-search="niebla una casilla a 4 o menos queda cubierta de niebla. niebla definitiva">
@@ -406,7 +406,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Mordisco helado</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">1 de daño a un enemigo a 4 casillas o menos, que queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>.</p>
+    <p class="desc">1 de daño a un enemigo a 4 casillas o menos, que queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más.</span></span>.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="¡congelar! un enemigo a 4 casillas o menos queda congelado. congelar">
@@ -436,7 +436,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Ventisca</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
-    <p class="desc">Elige una casilla a 6 o menos: cada enemigo a 2 casillas o menos de ella queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</span></span>.</p>
+    <p class="desc">Elige una casilla a 6 o menos: cada enemigo a 2 casillas o menos de ella queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más.</span></span>.</p>
     
   </div>
 </article><article class="card r-rare" data-search="cadenas de hielo 3 casillas contiguas a 6 o menos quedan con hielo. cadenas_de_hielo cargas">
@@ -456,7 +456,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Bola de fuego</h3>
       <div class="meta"><span class="rar">Rara</span></div>
     </header>
-    <p class="desc">2 de daño a cada ficha en una casilla a 4 o menos y en las de al lado, también a las tuyas. La casilla elegida queda <span class="term" tabindex="0">Ardiendo<span class="tip" role="tooltip"><b>Ardiendo</b>Quien termina aquí su movimiento recibe 1 de daño.</span></span>.</p>
+    <p class="desc">2 de daño a cada ficha en una casilla a 4 o menos y en las de al lado, también a las tuyas. La casilla elegida queda <span class="term" tabindex="0">Ardiendo<span class="tip" role="tooltip"><b>Ardiendo</b>La primera ficha que pase por aquí queda Ardiendo; si es un esbirro, recibe 1 de daño. Luego se apaga.</span></span>.</p>
     
   </div>
 </article></div>
@@ -957,7 +957,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Estados de ficha</h2>
     <p>Lo que lleva encima una ficha.</p>
-    <p class="tally">32 estados</p>
+    <p class="tally">34 estados</p>
   </div>
   <div class="grid"><article class="card status" data-search="espinas el próximo enemigo que te dañe recibe 1 de vuelta. thorns defensa puntiaguda">
   <div class="body">
@@ -1031,13 +1031,13 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos.</p>
     <p class="named">Lo nombran: Pisotón, Zancadilla</p>
   </div>
-</article><article class="card status" data-search="escarchado las cartas de tu clase cuestan 1 pa más. si te vuelven a escarchar, quedas congelado. chilled mordisco helado escarcha ventisca">
+</article><article class="card status" data-search="escarchado las cartas de tu clase cuestan 1 pa más. chilled mordisco helado escarcha ventisca">
   <div class="body">
     <header>
       <h3>Escarchado</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
-    <p class="desc">Las cartas de tu clase cuestan 1 PA más. Si te vuelven a escarchar, quedas Congelado.</p>
+    <p class="desc">Las cartas de tu clase cuestan 1 PA más.</p>
     <p class="named">Lo nombran: Mordisco helado, Escarcha, Ventisca</p>
   </div>
 </article><article class="card status" data-search="congelado no te mueves, no lanzas cartas de tu clase y no peleas. el primer golpe te hace +1 y rompe el hielo. frozen ¡congelar!">
@@ -1048,6 +1048,24 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     </header>
     <p class="desc">No te mueves, no lanzas cartas de tu clase y no peleas. El primer golpe te hace +1 y rompe el hielo.</p>
     <p class="named">Lo nombran: ¡Congelar!</p>
+  </div>
+</article><article class="card status" data-search="ardiendo la próxima carta de tu clase que juegues te cuesta 1 pv, y se apaga. burning">
+  <div class="body">
+    <header>
+      <h3>Ardiendo</h3>
+      <div class="meta"><span class="negative">Perjudicial</span></div>
+    </header>
+    <p class="desc">La próxima carta de tu clase que juegues te cuesta 1 PV, y se apaga.</p>
+    
+  </div>
+</article><article class="card status" data-search="mojado calado hasta los huesos. wet">
+  <div class="body">
+    <header>
+      <h3>Mojado</h3>
+      <div class="meta"></div>
+    </header>
+    <p class="desc">Calado hasta los huesos.</p>
+    
   </div>
 </article><article class="card status" data-search="enraizado no te mueves ni puedes huir, pero peleas con normalidad. rooted">
   <div class="body">
@@ -1255,13 +1273,13 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p>Lo que hay en el suelo: afecta a quien pisa o cruza la casilla.</p>
     <p class="tally">13 estados</p>
   </div>
-  <div class="grid"><article class="card status" data-search="ardiendo quien termina aquí su movimiento recibe 1 de daño. burning ascua bola de fuego">
+  <div class="grid"><article class="card status" data-search="ardiendo la primera ficha que pase por aquí queda ardiendo; si es un esbirro, recibe 1 de daño. luego se apaga. burning ascua bola de fuego">
   <div class="body">
     <header>
       <h3>Ardiendo</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
-    <p class="desc">Quien termina aquí su movimiento recibe 1 de daño.</p>
+    <p class="desc">La primera ficha que pase por aquí queda Ardiendo; si es un esbirro, recibe 1 de daño. Luego se apaga.</p>
     <p class="named">Lo nombran: Ascua, Bola de fuego</p>
   </div>
 </article><article class="card status" data-search="niebla nadie ve ni puede apuntar a quien esté aquí, ni desde dentro, y no hay combate. los cuerpos siguen bloqueando el paso. fog niebla">
@@ -1377,7 +1395,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>fc86c7b</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>1173c4d</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
