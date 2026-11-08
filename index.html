@@ -157,18 +157,18 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="wrap intro">
   <h1>Cartas de Dices &amp; Tokens</h1>
-  <p>Las 74 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 34 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
+  <p>Las 75 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 34 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 64 de 74</span>
+    <span>Definitivas: 64 de 75</span>
   </div>
 </div>
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>14</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>17</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#parked" class="a-est">Apartadas<small>1</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>14</small></a><a href="#priest" class="a-pri">Sacerdote<small>14</small></a><a href="#rogue" class="a-rog">Pícaro<small>17</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#parked" class="a-est">Apartadas<small>1</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
     <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
   </div>
 </div>
@@ -474,7 +474,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Sacerdote</h2>
     <p>Cura, bendice, protege y devuelve fichas a la vida.</p>
-    <p class="tally">13 cartas · 6 comunes · 5 infrecuentes · 2 raras</p>
+    <p class="tally">14 cartas · 6 comunes · 6 infrecuentes · 2 raras</p>
   </div>
   <div class="grid"><article class="card r-common is-final" data-search="curación +1 pv a una ficha tuya herida a 5 casillas o menos. curacion definitiva">
   <div class="body">
@@ -544,6 +544,16 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
     <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="purificar quita todos los estados negativos a una ficha tuya. purificar">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Purificar</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Quita todos los estados negativos a una ficha tuya.</p>
     
   </div>
 </article><article class="card r-uncommon is-final" data-search="zona sagrada dos casillas contiguas a 4 o menos quedan en santuario. suelo_sagrado definitiva">
@@ -852,14 +862,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Una ficha tuya queda en <span class="term" tabindex="0">Repliegue<span class="tip" role="tooltip"><b>Repliegue</b>Tu próximo movimiento puedes resolverlo hacia atrás.</span></span>: su próximo movimiento puede ir hacia atrás.</p>
     
   </div>
-</article><article class="card r-uncommon" data-search="purga quita todos los estados negativos a una ficha tuya. purga">
+</article><article class="card r-uncommon" data-search="diezmo un rival queda endeudado: su próxima carta cuesta 1 pa más. diezmo">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Purga</h3>
+      <h3>Diezmo</h3>
       <div class="meta"><span class="rar">Infrecuente</span></div>
     </header>
-    <p class="desc">Quita todos los estados negativos a una ficha tuya.</p>
+    <p class="desc">Un rival queda <span class="term" tabindex="0">Endeudado<span class="tip" role="tooltip"><b>Endeudado</b>Tu próxima carta cuesta +1 PA por cada punto de Endeudado.</span></span>: su próxima carta cuesta 1 PA más.</p>
     
   </div>
 </article><article class="card r-uncommon is-final" data-search="instrucción una ficha tuya gana 1 de experiencia. instruccion definitiva">
@@ -1412,7 +1422,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>6f0a3fc</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>bca3963</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
