@@ -162,7 +162,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 44 de 74</span>
+    <span>Definitivas: 45 de 74</span>
   </div>
 </div>
 
@@ -764,14 +764,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">1 de daño a un enemigo a 2 casillas o menos, que queda <span class="term" tabindex="0">Sangrando<span class="tip" role="tooltip"><b>Sangrando</b>Recibes 1 de daño la próxima vez que te muevas. Si no te mueves, no sangras.</span></span>.</p>
     
   </div>
-</article><article class="card r-rare" data-search="puñalada pelea con un enemigo sin trabar a 1 casilla o menos. tu golpe ignora su def y lleva ataque furtivo. punalada">
+</article><article class="card r-rare is-final" data-search="asesinar gana ataque furtivo y ataca a un enemigo a 5 casillas o menos, ignorando su def. si muere, ocupas su casilla. asesinar definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
-      <h3>Puñalada</h3>
-      <div class="meta"><span class="rar">Rara</span></div>
+      <h3>Asesinar</h3>
+      <div class="meta"><span class="rar">Rara</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Pelea con un enemigo sin trabar a 1 casilla o menos. Tu golpe ignora su DEF y lleva <span class="term" tabindex="0">Ataque furtivo<span class="tip" role="tooltip"><b>Ataque furtivo</b>Tu próximo golpe hace el doble de daño, después de restar la DEF.</span></span>.</p>
+    <p class="desc">Gana <span class="term" tabindex="0">Ataque furtivo<span class="tip" role="tooltip"><b>Ataque furtivo</b>Tu próximo golpe hace el doble de daño, después de restar la DEF.</span></span> y ataca a un enemigo a 5 casillas o menos, ignorando su DEF. Si muere, ocupas su casilla.</p>
     
   </div>
 </article><article class="card r-rare" data-search="saqueo cada rival descarta 2 cartas al azar. saqueo cargas">
@@ -1156,14 +1156,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Tu próximo golpe hace +1 de daño por cada punto de Enfurecido.</p>
     <p class="named">Lo nombran: Furia, Afilar, Emboscada, Fervor</p>
   </div>
-</article><article class="card status" data-search="ataque furtivo tu próximo golpe hace el doble de daño, después de restar la def. double strike puñalada">
+</article><article class="card status" data-search="ataque furtivo tu próximo golpe hace el doble de daño, después de restar la def. double strike asesinar">
   <div class="body">
     <header>
       <h3>Ataque furtivo</h3>
       <div class="meta"><span class="positive">Beneficioso</span></div>
     </header>
     <p class="desc">Tu próximo golpe hace el doble de daño, después de restar la DEF.</p>
-    <p class="named">Lo nombran: Puñalada</p>
+    <p class="named">Lo nombran: Asesinar</p>
   </div>
 </article><article class="card status" data-search="encarnizado tu próximo combate se juega dos veces, ataques tú o te ataquen. si ambos siguen en pie, hay otro completo. bloodthirsty ensañarse">
   <div class="body">
@@ -1412,7 +1412,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>f58a6c3</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>c85c3f8</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
