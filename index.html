@@ -163,7 +163,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 28 de 73</span>
+    <span>Definitivas: 29 de 73</span>
   </div>
 </div>
 
@@ -349,14 +349,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Cualquier ficha a 4 casillas o menos sale despedida 2 casillas, alejándose de tu Mago.</p>
     
   </div>
-</article><article class="card r-common" data-search="escarcha un enemigo a 4 casillas o menos queda escarchado. no se puede lanzar sobre quien ya está escarchado, congelado o silenciado. escarcha">
+</article><article class="card r-common is-final" data-search="escarcha cualquier ficha o esbirro a 4 casillas o menos queda escarchado. escarcha definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Escarcha</h3>
-      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más.</span></span>. No se puede lanzar sobre quien ya está Escarchado, Congelado o Silenciado.</p>
+    <p class="desc">Cualquier ficha o esbirro a 4 casillas o menos queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Otro Escarchado te deja Congelado.</span></span>.</p>
     
   </div>
 </article><article class="card r-common is-final" data-search="adivinación miras las 3 primeras cartas de tu mazo y descartas las que quieras. adivinacion definitiva">
@@ -406,7 +406,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Mordisco helado</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">1 de daño a un enemigo a 4 casillas o menos, que queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más.</span></span>.</p>
+    <p class="desc">1 de daño a un enemigo a 4 casillas o menos, que queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Otro Escarchado te deja Congelado.</span></span>.</p>
     
   </div>
 </article><article class="card r-uncommon is-final" data-search="¡congelar! un enemigo a 4 casillas o menos queda congelado. congelar definitiva">
@@ -436,7 +436,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <h3>Ventisca</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Elige una casilla a 5 o menos: cada ficha y esbirro en ella y en las de al lado queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más.</span></span>, también los tuyos.</p>
+    <p class="desc">Elige una casilla a 5 o menos: cada ficha y esbirro en ella y en las de al lado queda <span class="term" tabindex="0">Escarchado<span class="tip" role="tooltip"><b>Escarchado</b>Las cartas de tu clase cuestan 1 PA más. Otro Escarchado te deja Congelado.</span></span>, también los tuyos.</p>
     
   </div>
 </article><article class="card r-rare" data-search="cadenas de hielo 3 casillas contiguas a 6 o menos quedan con hielo. cadenas_de_hielo cargas">
@@ -1031,13 +1031,13 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos.</p>
     <p class="named">Lo nombran: Pisotón, Zancadilla</p>
   </div>
-</article><article class="card status" data-search="escarchado las cartas de tu clase cuestan 1 pa más. chilled mordisco helado escarcha ventisca">
+</article><article class="card status" data-search="escarchado las cartas de tu clase cuestan 1 pa más. otro escarchado te deja congelado. chilled mordisco helado escarcha ventisca">
   <div class="body">
     <header>
       <h3>Escarchado</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
-    <p class="desc">Las cartas de tu clase cuestan 1 PA más.</p>
+    <p class="desc">Las cartas de tu clase cuestan 1 PA más. Otro Escarchado te deja Congelado.</p>
     <p class="named">Lo nombran: Mordisco helado, Escarcha, Ventisca</p>
   </div>
 </article><article class="card status" data-search="congelado no te mueves, no lanzas cartas de tu clase y no peleas. el primer golpe te hace +1 y rompe el hielo. frozen ¡congelar!">
@@ -1395,7 +1395,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>e862608</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>b35eb0a</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
