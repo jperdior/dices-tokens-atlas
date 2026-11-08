@@ -475,19 +475,9 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Sacerdote</h2>
     <p>Cura, bendice, protege y devuelve fichas a la vida.</p>
-    <p class="tally">13 cartas · 7 comunes · 4 infrecuentes · 2 raras</p>
+    <p class="tally">13 cartas · 6 comunes · 5 infrecuentes · 2 raras</p>
   </div>
-  <div class="grid"><article class="card r-common" data-search="escudo una ficha tuya a 4 casillas o menos queda protegido. no se puede lanzar sobre quien ya lo está. escudo">
-  <div class="body">
-    <header>
-      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Escudo</h3>
-      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
-    </header>
-    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>. No se puede lanzar sobre quien ya lo está.</p>
-    
-  </div>
-</article><article class="card r-common is-final" data-search="curación +1 pv a una ficha tuya herida a 5 casillas o menos. curacion definitiva">
+  <div class="grid"><article class="card r-common is-final" data-search="curación +1 pv a una ficha tuya herida a 5 casillas o menos. curacion definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
@@ -532,7 +522,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Plegaria</h3>
-      <div class="meta"><span class="rar">Común</span></div>
+      <div class="meta"><span class="rar">Común</span><span class="start">Mazo inicial</span></div>
     </header>
     <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Regenerando<span class="tip" role="tooltip"><b>Regenerando</b>Al empezar tu próximo turno recuperas 1 PV por cada punto (con 2, 2 PV) y se va.</span></span> 2: recupera 2 PV al empezar tu próximo turno.</p>
     
@@ -545,6 +535,16 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
     <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon" data-search="escudo una ficha tuya a 4 casillas o menos queda protegido. no se puede lanzar sobre quien ya lo está. escudo">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Escudo</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Una ficha tuya a 4 casillas o menos queda <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>. No se puede lanzar sobre quien ya lo está.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="suelo sagrado dos casillas contiguas a 4 o menos quedan en santuario. suelo_sagrado">
@@ -1405,7 +1405,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>c8c4bc1</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>8816de7</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
