@@ -162,7 +162,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 37 de 74</span>
+    <span>Definitivas: 39 de 74</span>
   </div>
 </div>
 
@@ -612,7 +612,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Pícaro</h2>
     <p>Sigilo, trampas, robo y remates por la espalda.</p>
-    <p class="tally">18 cartas · 9 comunes · 7 infrecuentes · 2 raras</p>
+    <p class="tally">18 cartas · 8 comunes · 8 infrecuentes · 2 raras</p>
   </div>
   <div class="grid"><article class="card r-common" data-search="esquiva tu pícaro queda protegido. esquiva">
   <div class="body">
@@ -622,16 +622,6 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <div class="meta"><span class="rar">Común</span></div>
     </header>
     <p class="desc">Tu Pícaro queda <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>.</p>
-    
-  </div>
-</article><article class="card r-common" data-search="robo el dueño de un enemigo a 4 casillas o menos descarta 1 carta al azar. robo">
-  <div class="body">
-    <header>
-      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Robo</h3>
-      <div class="meta"><span class="rar">Común</span></div>
-    </header>
-    <p class="desc">El dueño de un enemigo a 4 casillas o menos descarta 1 carta al azar.</p>
     
   </div>
 </article><article class="card r-common is-final" data-search="trampa pon una trampa en la casilla de detrás de tu pícaro, si está libre y no es seguro. trampa definitiva">
@@ -684,12 +674,12 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Un rival elige una carta de su mano y la descarta.</p>
     
   </div>
-</article><article class="card r-common" data-search="distracción un rival queda distraído: al final de su turno repone 4 cartas en vez de 5. distraccion">
+</article><article class="card r-common is-final" data-search="distracción un rival queda distraído: al final de su turno repone 4 cartas en vez de 5. distraccion definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Distracción</h3>
-      <div class="meta"><span class="rar">Común</span></div>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
     <p class="desc">Un rival queda <span class="term" tabindex="0">Distraído<span class="tip" role="tooltip"><b>Distraído</b>Al final de tu próximo turno repones 4 cartas en vez de 5.</span></span>: al final de su turno repone 4 cartas en vez de 5.</p>
     
@@ -702,6 +692,16 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
       <div class="meta"><span class="rar">Común</span></div>
     </header>
     <p class="desc">Tu Pícaro avanza exactamente 3 casillas. Si cae sobre un enemigo, pelea; si estaba <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>, con <span class="term" tabindex="0">Ataque furtivo<span class="tip" role="tooltip"><b>Ataque furtivo</b>Tu próximo golpe hace el doble de daño, después de restar la DEF.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon is-final" data-search="robo un rival descarta 1 carta al azar. robo definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Robo</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Un rival descarta 1 carta al azar.</p>
     
   </div>
 </article><article class="card r-uncommon" data-search="foso pon una trampa en hasta 2 casillas libres a 4 o menos que no sean seguro. foso cargas">
@@ -1404,7 +1404,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>8b4c14e</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>bf4925d</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
