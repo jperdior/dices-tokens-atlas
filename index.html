@@ -168,7 +168,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>14</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>18</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>14</small></a><a href="#priest" class="a-pri">Sacerdote<small>13</small></a><a href="#rogue" class="a-rog">Pícaro<small>17</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#parked" class="a-est">Apartadas<small>1</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
     <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
   </div>
 </div>
@@ -612,19 +612,9 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Pícaro</h2>
     <p>Sigilo, trampas, robo y remates por la espalda.</p>
-    <p class="tally">18 cartas · 8 comunes · 8 infrecuentes · 2 raras</p>
+    <p class="tally">17 cartas · 7 comunes · 8 infrecuentes · 2 raras</p>
   </div>
-  <div class="grid"><article class="card r-common" data-search="esquiva tu pícaro queda protegido. esquiva">
-  <div class="body">
-    <header>
-      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Esquiva</h3>
-      <div class="meta"><span class="rar">Común</span></div>
-    </header>
-    <p class="desc">Tu Pícaro queda <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>.</p>
-    
-  </div>
-</article><article class="card r-common is-final" data-search="trampa pon una trampa en la casilla de detrás de tu pícaro, si está libre y no es seguro. trampa definitiva">
+  <div class="grid"><article class="card r-common is-final" data-search="trampa pon una trampa en la casilla de detrás de tu pícaro, si está libre y no es seguro. trampa definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
@@ -694,6 +684,16 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Tu Pícaro avanza exactamente 3 casillas. Si cae sobre un enemigo, pelea; si estaba <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima.</span></span>, con <span class="term" tabindex="0">Ataque furtivo<span class="tip" role="tooltip"><b>Ataque furtivo</b>Tu próximo golpe hace el doble de daño, después de restar la DEF.</span></span>.</p>
     
   </div>
+</article><article class="card r-uncommon" data-search="esquiva tu pícaro queda protegido. esquiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Esquiva</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Tu Pícaro queda <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>.</p>
+    
+  </div>
 </article><article class="card r-uncommon is-final" data-search="robo un rival descarta 1 carta al azar. robo definitiva">
   <div class="body">
     <header>
@@ -713,16 +713,6 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     </header>
     <p class="desc">Pon una <span class="term" tabindex="0">Trampa<span class="tip" role="tooltip"><b>Trampa</b>Invisible para los rivales. El primer enemigo que entre se para aquí y recibe 1 de daño. Máximo 3 por jugador: la cuarta quita la más vieja.</span></span> en hasta 2 casillas libres a 4 o menos que no sean seguro.</p>
     <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega 2 veces; vuelve al descarte con una menos y, sin cargas, sale de la partida.</span></span></span></p>
-  </div>
-</article><article class="card r-uncommon" data-search="marca un enemigo a 4 casillas o menos queda marcado. marca">
-  <div class="body">
-    <header>
-      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
-      <h3>Marca</h3>
-      <div class="meta"><span class="rar">Infrecuente</span></div>
-    </header>
-    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Marcado<span class="tip" role="tooltip"><b>Marcado</b>El próximo daño que recibas es +1.</span></span>.</p>
-    
   </div>
 </article><article class="card r-uncommon" data-search="chantaje miras la mano de un rival y eliges tú la carta que descarta. chantaje">
   <div class="body">
@@ -959,6 +949,24 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     </header>
     <p class="desc">Lanza una ficha tuya exactamente 20 casillas. Raudo, Trastabillado y demás no cuentan.</p>
     <p class="kws"><span class="kw"><span class="term" tabindex="0">Única<span class="tip" role="tooltip"><b>Única</b>Nunca puedes tener dos copias a la vez.</span></span></span><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article></div>
+</section>
+<section id="parked" class="pool a-est">
+  <div class="pool-head">
+    <h2>Apartadas</h2>
+    <p>Fuera de todo pool: nadie las roba ni empieza con ellas. Esperan a la clase que las recoja.</p>
+    <p class="tally">1 cartas · 1 infrecuente</p>
+  </div>
+  <div class="grid"><article class="card r-uncommon" data-search="marca un enemigo a 4 casillas o menos queda marcado. marca">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Marca</h3>
+      <div class="meta"><span class="rar">Infrecuente</span></div>
+    </header>
+    <p class="desc">Un enemigo a 4 casillas o menos queda <span class="term" tabindex="0">Marcado<span class="tip" role="tooltip"><b>Marcado</b>El próximo daño que recibas es +1.</span></span>.</p>
+    
   </div>
 </article></div>
 </section>
@@ -1404,7 +1412,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>2ad5a5e</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>3f3667e</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
