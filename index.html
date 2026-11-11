@@ -157,7 +157,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="wrap intro">
   <h1>Cartas de Dices &amp; Tokens</h1>
-  <p>Las 76 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 34 estados de ficha y los 13 de casilla, cada uno tal como se ve en el tablero.</p>
+  <p>Las 76 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 34 estados de ficha y los 14 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
@@ -168,7 +168,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>14</small></a><a href="#priest" class="a-pri">Sacerdote<small>14</small></a><a href="#rogue" class="a-rog">Pícaro<small>16</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#parked" class="a-est">Apartadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>13</small></a></nav>
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>14</small></a><a href="#priest" class="a-pri">Sacerdote<small>14</small></a><a href="#rogue" class="a-rog">Pícaro<small>16</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#parked" class="a-est">Apartadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>14</small></a></nav>
     <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
   </div>
 </div>
@@ -1308,7 +1308,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Estados de casilla</h2>
     <p>Lo que hay en el suelo: afecta a quien pisa o cruza la casilla.</p>
-    <p class="tally">13 estados</p>
+    <p class="tally">14 estados</p>
   </div>
   <div class="grid"><article class="card status" data-search="ardiendo la primera ficha que pase por aquí sufre ardiendo; si es un esbirro, recibe 1 de daño. luego se apaga. burning ascua">
   <div class="body">
@@ -1373,13 +1373,22 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Quien termina aquí su movimiento sufre Enraizado.</p>
     
   </div>
-</article><article class="card status" data-search="hielo quien acaba aquí su movimiento resbala 1 casilla más y sufre trastabillado. frozen">
+</article><article class="card status" data-search="hielo quien pasa por aquí o se para aquí resbala 1 casilla más y sufre trastabillado. el hielo se rompe. frozen">
   <div class="body">
     <header>
       <h3>Hielo</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
-    <p class="desc">Quien acaba aquí su movimiento resbala 1 casilla más y sufre Trastabillado.</p>
+    <p class="desc">Quien pasa por aquí o se para aquí resbala 1 casilla más y sufre Trastabillado. El hielo se rompe.</p>
+    
+  </div>
+</article><article class="card status" data-search="mojado un charco en el suelo. wet">
+  <div class="body">
+    <header>
+      <h3>Mojado</h3>
+      <div class="meta"></div>
+    </header>
+    <p class="desc">Un charco en el suelo.</p>
     
   </div>
 </article><article class="card status" data-search="santuario cancela el siguiente combate que fuera a haber aquí, y se va. sanctuary zona sagrada suelo sagrado">
@@ -1432,7 +1441,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>dfc67f1</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>6d9a3d4</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
