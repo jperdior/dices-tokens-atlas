@@ -30,6 +30,7 @@
   --wiz: #7A4DE8; --wiz-ink: #4B2AA8; --wiz-soft: #E4DAFF;
   --pri: #E99B12; --pri-ink: #8A5406; --pri-soft: #FFE9B8;
   --rog: #13A088; --rog-ink: #07604F; --rog-soft: #C6F1E6;
+  --nec: #6A5878; --nec-ink: #3A2E45; --nec-soft: #EDE6D6;
   --est: #5C6B85; --est-ink: #2F3A4D; --est-soft: #DDE3EE;
   --common: #C9CBD6; --uncommon: #2D6FE0; --rare: #F6C21C;
   --display: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif;
@@ -41,6 +42,7 @@
   --tip: #FFF8EC; --tip-ink: #1F2340; --tip-title: #8A5406;
   --war-ink: #FFB3A3; --war-soft: #4A1F1A; --wiz-ink: #CDBBFF; --wiz-soft: #2F2552;
   --pri-ink: #FFD27A; --pri-soft: #45330F; --rog-ink: #8FE6D2; --rog-soft: #10403A;
+  --nec-ink: #D8C8E6; --nec-soft: #2F2638;
   --est-ink: #C9D2E3; --est-soft: #2E3546; --common: #8D91A8; --uncommon: #6B9BFF;
   color-scheme: dark } }
 :root[data-theme="dark"] {
@@ -49,6 +51,7 @@
   --tip: #FFF8EC; --tip-ink: #1F2340; --tip-title: #8A5406;
   --war-ink: #FFB3A3; --war-soft: #4A1F1A; --wiz-ink: #CDBBFF; --wiz-soft: #2F2552;
   --pri-ink: #FFD27A; --pri-soft: #45330F; --rog-ink: #8FE6D2; --rog-soft: #10403A;
+  --nec-ink: #D8C8E6; --nec-soft: #2F2638;
   --est-ink: #C9D2E3; --est-soft: #2E3546; --common: #8D91A8; --uncommon: #6B9BFF;
   color-scheme: dark }
 
@@ -88,6 +91,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a-wiz { --accent: var(--wiz); --accent-ink: var(--wiz-ink); --accent-soft: var(--wiz-soft) }
 .a-pri { --accent: var(--pri); --accent-ink: var(--pri-ink); --accent-soft: var(--pri-soft) }
 .a-rog { --accent: var(--rog); --accent-ink: var(--rog-ink); --accent-soft: var(--rog-soft) }
+.a-nec { --accent: var(--nec); --accent-ink: var(--nec-ink); --accent-soft: var(--nec-soft) }
 .a-est { --accent: var(--est); --accent-ink: var(--est-ink); --accent-soft: var(--est-soft) }
 .a-tok { --accent: var(--pri); --accent-ink: var(--pri-ink); --accent-soft: var(--pri-soft) }
 .a-cel { --accent: var(--rog); --accent-ink: var(--rog-ink); --accent-soft: var(--rog-soft) }
@@ -157,18 +161,18 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 
 <div class="wrap intro">
   <h1>Cartas de Dices &amp; Tokens</h1>
-  <p>Las 76 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 34 estados de ficha y los 14 de casilla, cada uno tal como se ve en el tablero.</p>
+  <p>Las 92 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 34 estados de ficha y los 15 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
     <span><span class="ap"><b>2</b>PA</span> coste: los puntos del dado que gasta</span>
     <span>Rareza: común 6 · infrecuente 3 · rara 1 en los drafts</span>
     <span>Mano: se repone a 5 cartas</span>
-    <span>Definitivas: 70 de 76</span>
+    <span>Definitivas: 86 de 92</span>
   </div>
 </div>
 
 <div class="bar">
   <div class="wrap">
-    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>14</small></a><a href="#priest" class="a-pri">Sacerdote<small>14</small></a><a href="#rogue" class="a-rog">Pícaro<small>16</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>3</small></a><a href="#parked" class="a-est">Apartadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>14</small></a></nav>
+    <nav aria-label="Secciones"><a href="#warrior" class="a-war">Guerrero<small>14</small></a><a href="#wizard" class="a-wiz">Mago<small>14</small></a><a href="#priest" class="a-pri">Clérigo<small>14</small></a><a href="#rogue" class="a-rog">Acechador<small>16</small></a><a href="#necromancer" class="a-nec">Nigromante<small>15</small></a><a href="#estratega" class="a-est">Estratega<small>12</small></a><a href="#minted" class="a-est">Acuñadas<small>4</small></a><a href="#parked" class="a-est">Apartadas<small>3</small></a><a href="#token" class="a-tok">Estados de ficha<small>34</small></a><a href="#cell" class="a-cel">Estados de casilla<small>15</small></a></nav>
     <input id="q" type="search" placeholder="Buscar carta o estado…" aria-label="Buscar">
   </div>
 </div>
@@ -472,7 +476,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </section>
 <section id="priest" class="pool a-pri">
   <div class="pool-head">
-    <h2>Sacerdote</h2>
+    <h2>Clérigo</h2>
     <p>Cura, bendice, protege y devuelve fichas a la vida.</p>
     <p class="tally">14 cartas · 6 comunes · 6 infrecuentes · 2 raras</p>
   </div>
@@ -576,14 +580,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Un enemigo a 4 casillas o menos sufre <span class="term" tabindex="0">Silenciado<span class="tip" role="tooltip"><b>Silenciado</b>Las cartas de tu clase no se pueden jugar. Las de estratega, sí.</span></span>.</p>
     
   </div>
-</article><article class="card r-uncommon is-final" data-search="martirio tu sacerdote pierde 1 pv y una ficha tuya a 4 casillas o menos gana inquebrantable. si tu sacerdote llega a 0, muere. martirio definitiva">
+</article><article class="card r-uncommon is-final" data-search="martirio tu clérigo pierde 1 pv y una ficha tuya a 4 casillas o menos gana inquebrantable. si tu clérigo llega a 0, muere. martirio definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 0 PA"><b>0</b>PA</div>
       <h3>Martirio</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Sacerdote pierde 1 PV y una ficha tuya a 4 casillas o menos gana <span class="term" tabindex="0">Inquebrantable<span class="tip" role="tooltip"><b>Inquebrantable</b>La próxima vez que morirías, sobrevives con 1 PV.</span></span>. Si tu Sacerdote llega a 0, muere.</p>
+    <p class="desc">Tu Clérigo pierde 1 PV y una ficha tuya a 4 casillas o menos gana <span class="term" tabindex="0">Inquebrantable<span class="tip" role="tooltip"><b>Inquebrantable</b>La próxima vez que morirías, sobrevives con 1 PV.</span></span>. Si tu Clérigo llega a 0, muere.</p>
     
   </div>
 </article><article class="card r-uncommon is-final" data-search="milagro cura todos los pv de una ficha tuya herida a 4 casillas o menos. milagro definitiva">
@@ -620,18 +624,18 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 </section>
 <section id="rogue" class="pool a-rog">
   <div class="pool-head">
-    <h2>Pícaro</h2>
+    <h2>Acechador</h2>
     <p>Sigilo, trampas, robo y remates por la espalda.</p>
     <p class="tally">16 cartas · 7 comunes · 7 infrecuentes · 2 raras</p>
   </div>
-  <div class="grid"><article class="card r-common is-final" data-search="trampa pon una trampa en la casilla de detrás de tu pícaro, si está libre y no es seguro. trampa definitiva">
+  <div class="grid"><article class="card r-common is-final" data-search="trampa pon una trampa en la casilla de detrás de tu acechador, si está libre y no es seguro. trampa definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Trampa</h3>
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Pon una <span class="term" tabindex="0">Trampa<span class="tip" role="tooltip"><b>Trampa</b>Invisible para los rivales. El primer enemigo que entre se para aquí y recibe 1 de daño. Máximo 3 por jugador: la cuarta quita la más vieja.</span></span> en la casilla de detrás de tu Pícaro, si está libre y no es seguro.</p>
+    <p class="desc">Pon una <span class="term" tabindex="0">Trampa<span class="tip" role="tooltip"><b>Trampa</b>Invisible para los rivales. El primer enemigo que entre se para aquí y recibe 1 de daño. Máximo 3 por jugador: la cuarta quita la más vieja.</span></span> en la casilla de detrás de tu Acechador, si está libre y no es seguro.</p>
     
   </div>
 </article><article class="card r-common is-final" data-search="boleadoras un enemigo a 5 casillas o menos sufre trastabillado. boleadoras definitiva">
@@ -644,24 +648,24 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Un enemigo a 5 casillas o menos sufre <span class="term" tabindex="0">Trastabillado<span class="tip" role="tooltip"><b>Trastabillado</b>Tu próximo movimiento con el dado, o tu próxima huida, es de 1 casilla menos.</span></span>.</p>
     
   </div>
-</article><article class="card r-common is-final" data-search="ocultarse tu pícaro gana escondido. ocultarse definitiva">
+</article><article class="card r-common is-final" data-search="ocultarse tu acechador gana escondido. ocultarse definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Ocultarse</h3>
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Pícaro gana <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima. Dura hasta el final de tu próximo turno, y se rompe al entrar en tu pasillo final.</span></span>.</p>
+    <p class="desc">Tu Acechador gana <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima. Dura hasta el final de tu próximo turno, y se rompe al entrar en tu pasillo final.</span></span>.</p>
     
   </div>
-</article><article class="card r-common is-final" data-search="piel de anguila tu pícaro gana escurridizo. piel_de_anguila definitiva">
+</article><article class="card r-common is-final" data-search="piel de anguila tu acechador gana escurridizo. piel_de_anguila definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Piel de anguila</h3>
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Pícaro gana <span class="term" tabindex="0">Escurridizo<span class="tip" role="tooltip"><b>Escurridizo</b>Al moverse atraviesa barreras y trampas, y la trampa no salta; el destino debe ser legal. Dura hasta que atraviesa una barrera.</span></span>.</p>
+    <p class="desc">Tu Acechador gana <span class="term" tabindex="0">Escurridizo<span class="tip" role="tooltip"><b>Escurridizo</b>Al moverse atraviesa barreras y trampas, y la trampa no salta; el destino debe ser legal. Dura hasta que atraviesa una barrera.</span></span>.</p>
     
   </div>
 </article><article class="card r-common is-final" data-search="estaba ahí un rival elige una carta de su mano y la descarta. estaba_ahi definitiva">
@@ -684,24 +688,24 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Un rival sufre <span class="term" tabindex="0">Distraído<span class="tip" role="tooltip"><b>Distraído</b>Al final de tu próximo turno repones 4 cartas en vez de 5.</span></span>: al final de su turno repone 4 cartas en vez de 5.</p>
     
   </div>
-</article><article class="card r-common is-final" data-search="paso sombrío tu pícaro se mueve 1 casilla, delante o detrás, y gana escondido. paso_sombrio definitiva">
+</article><article class="card r-common is-final" data-search="paso sombrío tu acechador se mueve 1 casilla, delante o detrás, y gana escondido. paso_sombrio definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Paso sombrío</h3>
       <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Pícaro se mueve 1 casilla, delante o detrás, y gana <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima. Dura hasta el final de tu próximo turno, y se rompe al entrar en tu pasillo final.</span></span>.</p>
+    <p class="desc">Tu Acechador se mueve 1 casilla, delante o detrás, y gana <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima. Dura hasta el final de tu próximo turno, y se rompe al entrar en tu pasillo final.</span></span>.</p>
     
   </div>
-</article><article class="card r-uncommon is-final" data-search="esquiva asombrosa tu pícaro gana protegido. esquiva definitiva">
+</article><article class="card r-uncommon is-final" data-search="esquiva asombrosa tu acechador gana protegido. esquiva definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Esquiva asombrosa</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Pícaro gana <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>.</p>
+    <p class="desc">Tu Acechador gana <span class="term" tabindex="0">Protegido<span class="tip" role="tooltip"><b>Protegido</b>El próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0.</span></span>.</p>
     
   </div>
 </article><article class="card r-uncommon is-final" data-search="robo un rival descarta 1 carta al azar. robo definitiva">
@@ -734,14 +738,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Miras la mano de un rival y eliges tú la carta que descarta.</p>
     
   </div>
-</article><article class="card r-uncommon is-final" data-search="visto y no visto tu pícaro gana borroso. incognito definitiva">
+</article><article class="card r-uncommon is-final" data-search="visto y no visto tu acechador gana borroso. incognito definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 0 PA"><b>0</b>PA</div>
       <h3>Visto y no visto</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Pícaro gana <span class="term" tabindex="0">Borroso<span class="tip" role="tooltip"><b>Borroso</b>Ninguna carta enemiga puede apuntarte, ni desde tu misma casilla; las de tu jugador sí. Sigues peleando y te alcanzan las cartas de área. Dura hasta el principio de tu siguiente turno.</span></span>.</p>
+    <p class="desc">Tu Acechador gana <span class="term" tabindex="0">Borroso<span class="tip" role="tooltip"><b>Borroso</b>Ninguna carta enemiga puede apuntarte, ni desde tu misma casilla; las de tu jugador sí. Sigues peleando y te alcanzan las cartas de área. Dura hasta el principio de tu siguiente turno.</span></span>.</p>
     
   </div>
 </article><article class="card r-uncommon is-final" data-search="afilar gana enfurecido 2. afilar definitiva">
@@ -754,14 +758,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Gana <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto de Enfurecido.</span></span> 2.</p>
     
   </div>
-</article><article class="card r-uncommon is-final" data-search="emboscada tu pícaro gana enfurecido y escondido. emboscada definitiva">
+</article><article class="card r-uncommon is-final" data-search="emboscada tu acechador gana enfurecido y escondido. emboscada definitiva">
   <div class="body">
     <header>
       <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
       <h3>Emboscada</h3>
       <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
     </header>
-    <p class="desc">Tu Pícaro gana <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto de Enfurecido.</span></span> y <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima. Dura hasta el final de tu próximo turno, y se rompe al entrar en tu pasillo final.</span></span>.</p>
+    <p class="desc">Tu Acechador gana <span class="term" tabindex="0">Enfurecido<span class="tip" role="tooltip"><b>Enfurecido</b>Tu próximo golpe hace +1 de daño por cada punto de Enfurecido.</span></span> y <span class="term" tabindex="0">Escondido<span class="tip" role="tooltip"><b>Escondido</b>Los rivales no te ven ni pueden apuntarte. Si caes sobre un enemigo peleas con Ataque furtivo, y se rompe; también si te caen encima. Dura hasta el final de tu próximo turno, y se rompe al entrar en tu pasillo final.</span></span>.</p>
     
   </div>
 </article><article class="card r-rare is-final" data-search="asesinar gana ataque furtivo y ataca a un enemigo a 5 casillas o menos, ignorando su def. si muere, ocupas su casilla. asesinar definitiva">
@@ -783,6 +787,164 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     </header>
     <p class="desc">Cada rival descarta 2 cartas al azar.</p>
     <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article></div>
+</section>
+<section id="necromancer" class="pool a-nec">
+  <div class="pool-head">
+    <h2>Nigromante</h2>
+    <p>Desgaste, cadáveres y esbirros.</p>
+    <p class="tally">15 cartas · 9 comunes · 4 infrecuentes · 2 raras</p>
+  </div>
+  <div class="grid"><article class="card r-common is-final" data-search="saquear tumbas una casilla vacía a 4 o menos gana cadáver. saquear_tumbas inicial definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Saquear tumbas</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Una casilla vacía a 4 o menos gana <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span>.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Inicial<span class="tip" role="tooltip"><b>Inicial</b>Siempre está en el mazo inicial si juegas con su clase: ocupa uno de sus 3 huecos de comunes. También puede salir en los drafts.</span></span></span></p>
+  </div>
+</article><article class="card r-common is-final" data-search="drenar 1 de daño a un enemigo a 4 casillas o menos, que sufre drenado. drenar definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Drenar</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">1 de daño a un enemigo a 4 casillas o menos, que sufre <span class="term" tabindex="0">Drenado<span class="tip" role="tooltip"><b>Drenado</b>Los próximos PV que recuperarías se quedan en 0.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common is-final" data-search="suelo profano una casilla a 4 o menos se vuelve terreno maldito. suelo_profano definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Suelo profano</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Una casilla a 4 o menos se vuelve <span class="term" tabindex="0">Terreno maldito<span class="tip" role="tooltip"><b>Terreno maldito</b>Quien termine aquí su turno, sea de quien sea, pierde 1 PV, y la maldición se va.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common is-final" data-search="escudo de hueso tu nigromante gana escudado. escudo_de_hueso definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 0 PA"><b>0</b>PA</div>
+      <h3>Escudo de hueso</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Tu Nigromante gana <span class="term" tabindex="0">Escudado<span class="tip" role="tooltip"><b>Escudado</b>+1 DEF por cada punto de Escudado en tu próximo combate, aunque estés Expuesto: puede dejar el golpe en 0. No frena el daño de las cartas.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common is-final" data-search="últimos ritos gasta un cadáver a 4 o menos. tu nigromante recupera todos sus pv. ultimos_ritos definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Últimos ritos</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Gasta un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> a 4 o menos. Tu Nigromante recupera todos sus PV.</p>
+    
+  </div>
+</article><article class="card r-common is-final" data-search="recuerdos de ultratumba elige una carta de tu descarte y ponla en tu mano. recuerdos_de_ultratumba definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Recuerdos de ultratumba</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Elige una carta de tu descarte y ponla en tu mano.</p>
+    
+  </div>
+</article><article class="card r-common is-final" data-search="cadáver trampa un cadáver a 4 o menos se vuelve cadáver trampa. cadaver_trampa definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Cadáver trampa</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> a 4 o menos se vuelve <span class="term" tabindex="0">Cadáver trampa<span class="tip" role="tooltip"><b>Cadáver trampa</b>Oculto a los rivales. El primer enemigo que pase por aquí recibe 1 de daño y sigue su camino; el cadáver se gasta y la casilla queda como Terreno maldito. Se va si el cadáver se pudre.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common is-final" data-search="esqueleto gasta un cadáver de cualquier parte del tablero. invoca un esqueleto. esqueleto definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Esqueleto</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Gasta un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> de cualquier parte del tablero. Invoca un <span class="term" tabindex="0">Esqueleto<span class="tip" role="tooltip"><b>Esqueleto</b>Caza: al final del turno de su dueño avanza hasta 3 casillas hacia la ficha enemiga más cercana y pelea si cae encima.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-common is-final" data-search="zombi gasta un cadáver de cualquier parte del tablero. invoca un zombi. zombi definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Zombi</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Gasta un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> de cualquier parte del tablero. Invoca un <span class="term" tabindex="0">Zombi<span class="tip" role="tooltip"><b>Zombi</b>Caza: al final del turno de su dueño avanza 1 casilla hacia la ficha enemiga más cercana y pelea si cae encima.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon is-final" data-search="explosión de cadáver gasta un cadáver a 5 o menos: cada ficha a 3 casillas o menos de él recibe 2 de daño, también las tuyas. explosion_de_cadaver definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
+      <h3>Explosión de cadáver</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Gasta un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> a 5 o menos: cada ficha a 3 casillas o menos de él recibe 2 de daño, también las tuyas.</p>
+    
+  </div>
+</article><article class="card r-uncommon is-final" data-search="exhumar gasta un cadáver de cualquier parte del tablero y roba 2 cartas. exhumar definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Exhumar</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Gasta un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> de cualquier parte del tablero y roba 2 cartas.</p>
+    
+  </div>
+</article><article class="card r-uncommon is-final" data-search="esqueleto arquero gasta un cadáver de cualquier parte del tablero. invoca un esqueleto arquero. esqueleto_arquero definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 2 PA"><b>2</b>PA</div>
+      <h3>Esqueleto arquero</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Gasta un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> de cualquier parte del tablero. Invoca un <span class="term" tabindex="0">Esqueleto arquero<span class="tip" role="tooltip"><b>Esqueleto arquero</b>Dispara: nunca se mueve. Al final del turno de su dueño golpea sin respuesta a la ficha enemiga más cercana a 4 casillas o menos.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-uncommon is-final" data-search="pesadilla pon un terror nocturno en el descarte de cada rival. pesadilla definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Pesadilla</h3>
+      <div class="meta"><span class="rar">Infrecuente</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Pon un Terror nocturno en el descarte de cada rival.</p>
+    
+  </div>
+</article><article class="card r-rare is-final" data-search="fosa común cada cadáver del tablero se vuelve cadáver trampa. fosa_comun definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
+      <h3>Fosa común</h3>
+      <div class="meta"><span class="rar">Rara</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Cada <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> del tablero se vuelve <span class="term" tabindex="0">Cadáver trampa<span class="tip" role="tooltip"><b>Cadáver trampa</b>Oculto a los rivales. El primer enemigo que pase por aquí recibe 1 de daño y sigue su camino; el cadáver se gasta y la casilla queda como Terreno maldito. Se va si el cadáver se pudre.</span></span>.</p>
+    
+  </div>
+</article><article class="card r-rare is-final" data-search="coloso de huesos gasta un cadáver de cualquier parte del tablero. invoca un coloso de huesos. coloso_de_huesos definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 3 PA"><b>3</b>PA</div>
+      <h3>Coloso de huesos</h3>
+      <div class="meta"><span class="rar">Rara</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">Gasta un <span class="term" tabindex="0">Cadáver<span class="tip" role="tooltip"><b>Cadáver</b>Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</span></span> de cualquier parte del tablero. Invoca un <span class="term" tabindex="0">Coloso de huesos<span class="tip" role="tooltip"><b>Coloso de huesos</b>Caza: al final del turno de su dueño avanza hasta 2 casillas hacia la ficha enemiga más cercana y pelea si cae encima.</span></span>.</p>
+    
   </div>
 </article></div>
 </section>
@@ -918,7 +1080,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Acuñadas por el juego</h2>
     <p>No se roban ni se eligen en un draft: el juego las crea.</p>
-    <p class="tally">3 cartas · 3 comunes</p>
+    <p class="tally">4 cartas · 4 comunes</p>
   </div>
   <div class="grid"><article class="card r-common" data-search="invocación saca una ficha de casa a tu salida, sin 5 y sin combate. necesita la salida libre. invocacion única cargas">
   <div class="body">
@@ -949,6 +1111,16 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     </header>
     <p class="desc">Lanza una ficha tuya exactamente 20 casillas. Raudo, Trastabillado y demás no cuentan.</p>
     <p class="kws"><span class="kw"><span class="term" tabindex="0">Única<span class="tip" role="tooltip"><b>Única</b>Nunca puedes tener dos copias a la vez.</span></span></span><span class="kw"><span class="term" tabindex="0">Vuela<span class="tip" role="tooltip"><b>Vuela</b>Su movimiento es inmune a todo lo que haya en el camino: sólo cuenta la casilla donde cae.</span></span></span><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
+  </div>
+</article><article class="card r-common is-final" data-search="terror nocturno no hace nada. jugarla la saca de la partida. terror_nocturno cargas definitiva">
+  <div class="body">
+    <header>
+      <div class="ap" title="Cuesta 1 PA"><b>1</b>PA</div>
+      <h3>Terror nocturno</h3>
+      <div class="meta"><span class="rar">Común</span><span class="final">✓ Definitiva</span></div>
+    </header>
+    <p class="desc">No hace nada. Jugarla la saca de la partida.</p>
+    <p class="kws"><span class="kw"><span class="term" tabindex="0">Cargas<span class="tip" role="tooltip"><b>Cargas</b>Se juega una vez y sale de la partida: no vuelve al descarte.</span></span></span></p>
   </div>
 </article></div>
 </section>
@@ -1149,14 +1321,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">El próximo enemigo que vaya a pasar por tu casilla se detiene y pelea contigo, aunque vaya escondido. Si no puede haber combate ahí, como en un seguro, pasa de largo.</p>
     <p class="named">Lo nombran: Provocar</p>
   </div>
-</article><article class="card status" data-search="escudado +1 def por cada punto de escudado en tu próximo combate, aunque estés expuesto: puede dejar el golpe en 0. no frena el daño de las cartas. shielded amparo">
+</article><article class="card status" data-search="escudado +1 def por cada punto de escudado en tu próximo combate, aunque estés expuesto: puede dejar el golpe en 0. no frena el daño de las cartas. shielded amparo escudo de hueso">
   <div class="body">
     <header>
       <h3>Escudado</h3>
       <div class="meta"><span class="positive">Beneficioso</span><span>Acumulable</span></div>
     </header>
     <p class="desc">+1 DEF por cada punto de Escudado en tu próximo combate, aunque estés Expuesto: puede dejar el golpe en 0. No frena el daño de las cartas.</p>
-    <p class="named">Lo nombran: Amparo</p>
+    <p class="named">Lo nombran: Amparo, Escudo de hueso</p>
   </div>
 </article><article class="card status" data-search="protegido el próximo daño que recibirías, de golpe, de carta o de casilla, se queda en 0. warded escudo esquiva asombrosa intervención divina">
   <div class="body">
@@ -1212,14 +1384,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Tu DEF de clase cuenta como 0 en tu próximo combate. Escudado sigue contando.</p>
     
   </div>
-</article><article class="card status" data-search="drenado los próximos pv que recuperarías se quedan en 0. drained">
+</article><article class="card status" data-search="drenado los próximos pv que recuperarías se quedan en 0. drained drenar">
   <div class="body">
     <header>
       <h3>Drenado</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
     <p class="desc">Los próximos PV que recuperarías se quedan en 0.</p>
-    
+    <p class="named">Lo nombran: Drenar</p>
   </div>
 </article><article class="card status" data-search="envenenado recibes 1 de daño al principio de tu turno. poisoned">
   <div class="body">
@@ -1308,7 +1480,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
   <div class="pool-head">
     <h2>Estados de casilla</h2>
     <p>Lo que hay en el suelo: afecta a quien pisa o cruza la casilla.</p>
-    <p class="tally">14 estados</p>
+    <p class="tally">15 estados</p>
   </div>
   <div class="grid"><article class="card status" data-search="ardiendo la primera ficha que pase por aquí sufre ardiendo; si es un esbirro, recibe 1 de daño. luego se apaga. burning ascua">
   <div class="body">
@@ -1328,14 +1500,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Nadie ve ni puede apuntar a quien esté aquí, ni desde dentro, y no hay combate. Los cuerpos siguen bloqueando el paso.</p>
     <p class="named">Lo nombran: Niebla</p>
   </div>
-</article><article class="card status" data-search="cadáver un cuerpo que algunas cartas pueden gastar. se pudre a las 3 rondas. corpse resurrección">
+</article><article class="card status" data-search="cadáver un cuerpo que algunas cartas pueden gastar. se pudre a las 3 rondas. corpse resurrección saquear tumbas últimos ritos cadáver trampa esqueleto zombi explosión de cadáver exhumar esqueleto arquero fosa común coloso de huesos">
   <div class="body">
     <header>
       <h3>Cadáver</h3>
       <div class="meta"></div>
     </header>
     <p class="desc">Un cuerpo que algunas cartas pueden gastar. Se pudre a las 3 rondas.</p>
-    <p class="named">Lo nombran: Resurrección</p>
+    <p class="named">Lo nombran: Resurrección, Saquear tumbas, Últimos ritos, Cadáver trampa, Esqueleto, Zombi, Explosión de cadáver, Exhumar, Esqueleto arquero, Fosa común, Coloso de huesos</p>
   </div>
 </article><article class="card status" data-search="fortificado el próximo daño que se reciba en esta casilla se reduce en 1. fortified fortificar última defensa">
   <div class="body">
@@ -1355,14 +1527,14 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Quien termina aquí su movimiento sufre Trastabillado.</p>
     
   </div>
-</article><article class="card status" data-search="terreno maldito quien termina aquí su movimiento empieza a sangrar. blighted">
+</article><article class="card status" data-search="terreno maldito quien termine aquí su turno, sea de quien sea, pierde 1 pv, y la maldición se va. blighted suelo profano">
   <div class="body">
     <header>
       <h3>Terreno maldito</h3>
       <div class="meta"><span class="negative">Perjudicial</span></div>
     </header>
-    <p class="desc">Quien termina aquí su movimiento empieza a sangrar.</p>
-    
+    <p class="desc">Quien termine aquí su turno, sea de quien sea, pierde 1 PV, y la maldición se va.</p>
+    <p class="named">Lo nombran: Suelo profano</p>
   </div>
 </article><article class="card status" data-search="raíces quien termina aquí su movimiento sufre enraizado. grasping">
   <div class="body">
@@ -1409,6 +1581,15 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <p class="desc">Invisible para los rivales. El primer enemigo que entre se para aquí y recibe 1 de daño. Máximo 3 por jugador: la cuarta quita la más vieja.</p>
     <p class="named">Lo nombran: Abrojos, Trampa</p>
   </div>
+</article><article class="card status" data-search="cadáver trampa oculto a los rivales. el primer enemigo que pase por aquí recibe 1 de daño y sigue su camino; el cadáver se gasta y la casilla queda como terreno maldito. se va si el cadáver se pudre. rigged cadáver trampa fosa común">
+  <div class="body">
+    <header>
+      <h3>Cadáver trampa</h3>
+      <div class="meta"><span class="negative">Perjudicial</span><span>Oculto a los rivales</span></div>
+    </header>
+    <p class="desc">Oculto a los rivales. El primer enemigo que pase por aquí recibe 1 de daño y sigue su camino; el cadáver se gasta y la casilla queda como Terreno maldito. Se va si el cadáver se pudre.</p>
+    <p class="named">Lo nombran: Cadáver trampa, Fosa común</p>
+  </div>
 </article><article class="card status" data-search="barricada nadie puede terminar aquí su movimiento, pero se puede cruzar. barricaded">
   <div class="body">
     <header>
@@ -1441,7 +1622,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>29d851e</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>c48ac3c</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
