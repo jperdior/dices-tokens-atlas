@@ -123,7 +123,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* A card already validated (definitivas.txt): a green chip and a green frame. */
 .card .final { background: var(--rog); color: #fff }
 .card.is-final { border-color: var(--rog); box-shadow: 0 5px 0 var(--rog-ink) }
-/* The cost: the card's own chip (HandCard._draw_cost_chip) — an ink disc with a
+/* The cost: the enamel card's old chip — an ink disc with a
    white inner ring and the number in white — and "PA" beside it. */
 .ap { display: inline-flex; align-items: center; gap: 5px; font: 800 12px/1 var(--body); color: var(--muted);
   letter-spacing: .06em; white-space: nowrap }
@@ -1860,7 +1860,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>badaed4</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>ec3dd9c</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
