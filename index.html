@@ -10,158 +10,183 @@
 /* Layout: a sticky class bar over one section per pool; each section a grid of
    cards — each one its rules text, where every status and keyword explains
    itself on hover or tap, as in the game. No images: build.py needs no Godot.
-   Look: the game's «juguete esmaltado» — flat fills, a 3 px ink outline, a solid
-   shadow pushed straight down with no blur, rounded corners, paper background.
-   Every colour is copied from scripts/ui/ui_theme.gd (INK, PAPER, PANEL, CREAM,
-   MUTED, CLASS) and hand_card.gd (ESTRATEGA_PALETTE, RARITY_COLORS). */
+   Look: the game's 16 bits, its only theme — the wooden table under blue RPG
+   windows with a two-pixel bevel (light inside top-left, dark outside), square
+   corners, hard shadows with no blur; a card is the hand's pixel card: a blue
+   bevelled frame round striped cream paper, the class band on top, the cost in
+   a blue chip. Every colour is copied from scripts/ui/ui_theme.gd (INK, PANEL,
+   CREAM, WINDOW*, BEVEL_*, GOLD, WOOD*, TEXT, TITLE, MUTED, FOCUS, CLASS) and
+   hand_card.gd (PAPER_*, ESTRATEGA_PALETTE, RARITY_COLORS). */
 :root {
-  --paper: #FCEFD9;        /* UITheme.PAPER */
-  --halo: #F8E2BE;         /* UITheme.HALO */
-  --sheet: #FFFFFF;        /* UITheme.PANEL */
-  --cream: #FFF8EC;        /* UITheme.CREAM */
-  --ink: #1F2340;          /* UITheme.INK: outlines and text */
-  --body-ink: #4A4F70;     /* UITheme.BODY_TEXT */
-  --muted: #5A5F80;        /* UITheme.MUTED */
-  --line: #1F2340;         /* the outline */
-  --shadow: #1F2340;       /* the solid drop */
-  --tip: #1F2340; --tip-ink: #FFF8EC; --tip-title: #F6C21C;
-  --focus: #12B5C9;        /* UITheme.FOCUS */
-  --war: #E0452B; --war-ink: #9A2414; --war-soft: #FFD9CF;
-  --wiz: #7A4DE8; --wiz-ink: #4B2AA8; --wiz-soft: #E4DAFF;
-  --pri: #E99B12; --pri-ink: #8A5406; --pri-soft: #FFE9B8;
-  --rog: #13A088; --rog-ink: #07604F; --rog-soft: #C6F1E6;
-  --nec: #6A5878; --nec-ink: #3A2E45; --nec-soft: #EDE6D6;
-  --ran: #7C8A2A; --ran-ink: #454D12; --ran-soft: #ECEFCF;
-  --est: #5C6B85; --est-ink: #2F3A4D; --est-soft: #DDE3EE;
+  --ink: #0C0E2C;          /* UITheme.INK: edges, dark text */
+  --panel: #F4E6C4;        /* UITheme.PANEL */
+  --cream: #F8ECCC;        /* UITheme.CREAM */
+  --text: #F4F4FF;         /* UITheme.TEXT: text on a window */
+  --title: #FFD040;        /* UITheme.TITLE */
+  --muted: #AEB8E8;        /* UITheme.MUTED: secondary text on a window */
+  --ink-soft: #6A5638;     /* UITheme.INK_SOFT: secondary text on cream */
+  --focus: #18C8E0;        /* UITheme.FOCUS */
+  --window: #2A3CA8; --window-top: #3A56D2; --window-bottom: #1A2676; --window-deep: #16205A;
+  --bevel-light: #C4D2FF; --bevel-dark: #080A22;
+  --gold: #F8C030; --gold-deep: #6A3A10;
+  --wood: #8A5530; --wood-deep: #4E2E14; --wood-light: #A66A3A;
+  --paper-ink: #2A1C10;    /* HandCard.PAPER_INK: the name */
+  --paper-text: #47331C;   /* HandCard.PAPER_TEXT: the rules */
+  --paper-stripe: rgba(107, 74, 31, .07);  /* HandCard.PAPER_STRIPE */
+  --paper-dash: rgba(140, 107, 56, .6);    /* HandCard.PAPER_DASH */
+  --war: #E83A1E; --war-deep: #A8200C; --war-ink: #9A1C0C; --war-soft: #FFD0C4;
+  --wiz: #7A40F0; --wiz-deep: #4F24C0; --wiz-ink: #4820B0; --wiz-soft: #E0D2FF;
+  --pri: #F09A08; --pri-deep: #B86C04; --pri-ink: #8A5204; --pri-soft: #FFE6A8;
+  --rog: #08A888; --rog-deep: #04745E; --rog-ink: #045E4C; --rog-soft: #B8F0E0;
+  --nec: #705C80; --nec-deep: #483A56; --nec-ink: #3C2E48; --nec-soft: #F0E8D4;
+  --ran: #80921E; --ran-deep: #566410; --ran-ink: #48520C; --ran-soft: #EEF2C8;
+  --est: #5C6B85; --est-deep: #3E4A5E; --est-ink: #2F3A4D; --est-soft: #DDE3EE;
   --common: #C9CBD6; --uncommon: #2D6FE0; --rare: #F6C21C;
   --display: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif;
   --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  /* The pieces, as box-shadows: a raised bevel, a sunk one, the hard drop. */
+  --raised: inset 2px 2px 0 var(--bevel-light), inset -2px -2px 0 var(--window-bottom);
+  --drop: 4px 4px 0 rgba(8, 10, 34, .55);
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --paper: #14172C; --halo: #1B1F3A; --sheet: #23284A; --cream: #2B3157;
-  --ink: #FFF8EC; --body-ink: #E3E5EF; --muted: #A9AEC9; --line: #0B0D1C; --shadow: #0B0D1C;
-  --tip: #FFF8EC; --tip-ink: #1F2340; --tip-title: #8A5406;
-  --war-ink: #FFB3A3; --war-soft: #4A1F1A; --wiz-ink: #CDBBFF; --wiz-soft: #2F2552;
-  --pri-ink: #FFD27A; --pri-soft: #45330F; --rog-ink: #8FE6D2; --rog-soft: #10403A;
-  --nec-ink: #D8C8E6; --nec-soft: #2F2638; --ran-ink: #D5E09A; --ran-soft: #2C3312;
-  --est-ink: #C9D2E3; --est-soft: #2E3546; --common: #8D91A8; --uncommon: #6B9BFF;
-  color-scheme: dark } }
-:root[data-theme="dark"] {
-  --paper: #14172C; --halo: #1B1F3A; --sheet: #23284A; --cream: #2B3157;
-  --ink: #FFF8EC; --body-ink: #E3E5EF; --muted: #A9AEC9; --line: #0B0D1C; --shadow: #0B0D1C;
-  --tip: #FFF8EC; --tip-ink: #1F2340; --tip-title: #8A5406;
-  --war-ink: #FFB3A3; --war-soft: #4A1F1A; --wiz-ink: #CDBBFF; --wiz-soft: #2F2552;
-  --pri-ink: #FFD27A; --pri-soft: #45330F; --rog-ink: #8FE6D2; --rog-soft: #10403A;
-  --nec-ink: #D8C8E6; --nec-soft: #2F2638; --ran-ink: #D5E09A; --ran-soft: #2C3312;
-  --est-ink: #C9D2E3; --est-soft: #2E3546; --common: #8D91A8; --uncommon: #6B9BFF;
-  color-scheme: dark }
 
 * { box-sizing: border-box }
-body { background: radial-gradient(ellipse 70% 40% at 50% 0, var(--halo), transparent 70%) no-repeat, var(--paper);
-  color: var(--ink); font: 600 15px/1.45 var(--body); }
+/* The table: horizontal grain and a joint every 46 px, as at home. */
+body { margin: 0; color: var(--text); font: 600 15px/1.45 var(--body); background-color: var(--wood);
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 44px, var(--wood-deep) 44px 46px),
+    repeating-linear-gradient(180deg, var(--wood-light) 0 3px, transparent 3px 11px, rgba(0,0,0,.06) 11px 13px, transparent 13px 23px) }
 .wrap { max-width: 1240px; margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  padding-right: max(16px, env(safe-area-inset-right, 0px)) }
 
-.intro { padding-block: 40px 22px; display: grid; gap: 10px }
-.intro h1 { font: 400 clamp(32px, 6vw, 52px)/1.02 var(--display); margin: 0; letter-spacing: .01em; text-wrap: balance;
-  text-shadow: 0 3px 0 rgba(31,35,64,.18) }
-.intro p { margin: 0; max-width: 66ch; color: var(--muted) }
+/* A blue window: top-to-bottom gradient, dark edge, light bevel, hard drop. */
+.window { background: linear-gradient(180deg, var(--window-top), var(--window-bottom));
+  border: 2px solid var(--bevel-dark); box-shadow: var(--raised), var(--drop) }
+
+.intro { margin-top: 32px; margin-bottom: 22px }
+.intro .window { padding: 18px 20px; display: grid; gap: 10px }
+.intro h1 { font: 400 clamp(30px, 6vw, 50px)/1.04 var(--display); margin: 0; color: var(--title);
+  letter-spacing: .01em; text-wrap: balance; text-shadow: 3px 3px 0 var(--ink) }
+.intro p { margin: 0; max-width: 70ch; color: var(--text) }
 .intro .how { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--muted); margin-top: 6px }
 .intro .how span { display: inline-flex; align-items: center; gap: 6px }
 
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper) }
-.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper);
-  border-bottom: 3px solid var(--line) }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--window-deep) }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: linear-gradient(180deg, var(--window-top), var(--window-bottom));
+  border-block: 2px solid var(--bevel-dark); box-shadow: inset 0 2px 0 var(--bevel-light), 0 4px 0 rgba(8,10,34,.45) }
 .bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-block: 10px 12px }
 .bar nav { display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 auto; min-width: 0 }
-.bar nav a { display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 12px 4px; border-radius: 999px;
+/* A chunky button: the class colour, bevelled, pressed it inverts. */
+.bar nav a { display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 12px 4px;
   text-decoration: none; color: #fff; font: 400 16px var(--display); letter-spacing: .02em;
-  background: var(--accent); border: 3px solid var(--line); box-shadow: 0 3px 0 var(--shadow);
-  text-shadow: 0 2px 0 rgba(31,35,64,.45); transition: transform .08s, box-shadow .08s }
-.bar nav a small { font: 800 12px var(--body); color: #fff; opacity: .85; font-variant-numeric: tabular-nums; text-shadow: none }
-.bar nav a:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--shadow) }
-.bar nav a:active { transform: translateY(3px); box-shadow: 0 0 0 var(--shadow) }
+  background: var(--accent); border: 2px solid var(--ink);
+  box-shadow: inset 2px 2px 0 rgba(255,255,255,.4), inset -2px -2px 0 var(--accent-deep), 3px 3px 0 rgba(8,10,34,.6);
+  text-shadow: 2px 2px 0 var(--ink) }
+.bar nav a small { font: 800 12px var(--body); color: #fff; opacity: .9; font-variant-numeric: tabular-nums; text-shadow: 1px 1px 0 var(--ink) }
+.bar nav a:hover { filter: brightness(1.08) }
+.bar nav a:active { transform: translate(2px, 2px);
+  box-shadow: inset 2px 2px 0 var(--accent-deep), inset -2px -2px 0 rgba(255,255,255,.3) }
 .bar nav a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px }
-.bar input { flex: 0 1 240px; min-width: 0; font: 600 15px var(--body); padding: 7px 12px; border-radius: 12px;
-  border: 3px solid var(--line); background: var(--sheet); color: var(--ink); box-shadow: 0 3px 0 var(--shadow) }
-.bar input::placeholder { color: var(--muted) }
-.bar input:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px }
+/* A text field: a sunk cream box. */
+.bar input { flex: 0 1 240px; min-width: 0; font: 600 15px var(--body); padding: 7px 12px; border-radius: 0;
+  border: 2px solid var(--ink); background: var(--cream); color: var(--paper-ink);
+  box-shadow: inset 2px 2px 0 rgba(106,86,56,.45), inset -2px -2px 0 #fff }
+.bar input::placeholder { color: var(--ink-soft) }
+.bar input:focus-visible { outline: none; border-color: var(--focus) }
 
-.a-war { --accent: var(--war); --accent-ink: var(--war-ink); --accent-soft: var(--war-soft) }
-.a-wiz { --accent: var(--wiz); --accent-ink: var(--wiz-ink); --accent-soft: var(--wiz-soft) }
-.a-pri { --accent: var(--pri); --accent-ink: var(--pri-ink); --accent-soft: var(--pri-soft) }
-.a-rog { --accent: var(--rog); --accent-ink: var(--rog-ink); --accent-soft: var(--rog-soft) }
-.a-nec { --accent: var(--nec); --accent-ink: var(--nec-ink); --accent-soft: var(--nec-soft) }
-.a-ran { --accent: var(--ran); --accent-ink: var(--ran-ink); --accent-soft: var(--ran-soft) }
-.a-est { --accent: var(--est); --accent-ink: var(--est-ink); --accent-soft: var(--est-soft) }
-.a-tok { --accent: var(--pri); --accent-ink: var(--pri-ink); --accent-soft: var(--pri-soft) }
-.a-cel { --accent: var(--rog); --accent-ink: var(--rog-ink); --accent-soft: var(--rog-soft) }
+.a-war { --accent: var(--war); --accent-deep: var(--war-deep); --accent-ink: var(--war-ink); --accent-soft: var(--war-soft) }
+.a-wiz { --accent: var(--wiz); --accent-deep: var(--wiz-deep); --accent-ink: var(--wiz-ink); --accent-soft: var(--wiz-soft) }
+.a-pri { --accent: var(--pri); --accent-deep: var(--pri-deep); --accent-ink: var(--pri-ink); --accent-soft: var(--pri-soft) }
+.a-rog { --accent: var(--rog); --accent-deep: var(--rog-deep); --accent-ink: var(--rog-ink); --accent-soft: var(--rog-soft) }
+.a-nec { --accent: var(--nec); --accent-deep: var(--nec-deep); --accent-ink: var(--nec-ink); --accent-soft: var(--nec-soft) }
+.a-ran { --accent: var(--ran); --accent-deep: var(--ran-deep); --accent-ink: var(--ran-ink); --accent-soft: var(--ran-soft) }
+.a-est { --accent: var(--est); --accent-deep: var(--est-deep); --accent-ink: var(--est-ink); --accent-soft: var(--est-soft) }
+.a-tok { --accent: var(--pri); --accent-deep: var(--pri-deep); --accent-ink: var(--pri-ink); --accent-soft: var(--pri-soft) }
+.a-cel { --accent: var(--rog); --accent-deep: var(--rog-deep); --accent-ink: var(--rog-ink); --accent-soft: var(--rog-soft) }
 
-.pool { padding-block: 34px 10px; scroll-margin-top: 70px }
-.pool-head { display: grid; gap: 4px; margin-bottom: 18px }
+.pool { padding-block: 30px 10px; scroll-margin-top: 70px }
+.pool-head { display: grid; gap: 4px; margin-bottom: 18px; padding: 12px 16px;
+  background: linear-gradient(180deg, var(--window-top), var(--window-bottom));
+  border: 2px solid var(--bevel-dark); box-shadow: var(--raised), var(--drop) }
 .pool-head h2 { margin: 0; justify-self: start; font: 400 26px/1.1 var(--display); color: #fff; letter-spacing: .02em;
-  background: var(--accent); padding: 6px 16px 5px; border-radius: 14px; border: 3px solid var(--line);
-  box-shadow: 0 4px 0 var(--shadow); text-shadow: 0 2px 0 rgba(31,35,64,.45) }
+  background: var(--accent); padding: 6px 16px 5px; border: 2px solid var(--ink);
+  box-shadow: inset 2px 2px 0 rgba(255,255,255,.4), inset -2px -2px 0 var(--accent-deep), 3px 3px 0 rgba(8,10,34,.6);
+  text-shadow: 2px 2px 0 var(--ink) }
 .pool-head p { margin: 0; color: var(--muted) }
-.pool-head p:first-of-type { margin-top: 6px; color: var(--ink) }
-.pool-head .tally { font: 800 13px var(--body); font-variant-numeric: tabular-nums }
+.pool-head p:first-of-type { margin-top: 6px; color: var(--text) }
+.pool-head .tally { font: 800 13px var(--body); font-variant-numeric: tabular-nums; color: var(--title) }
 .pool[hidden] { display: none }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 18px; align-items: start }
-.card { background: var(--sheet); border: 3px solid var(--line); border-radius: 18px; padding: 12px;
-  min-width: 0; box-shadow: 0 5px 0 var(--shadow) }
-.card .body { display: grid; gap: 8px; align-content: start; min-width: 0 }
-.card header { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: center }
-.card h3 { margin: 0; font: 400 22px/1.1 var(--display); color: var(--ink); letter-spacing: .01em; text-wrap: balance }
+/* The pixel card: the blue bevelled frame with its hard shadow... */
+.card { background: var(--window-top); border: 2px solid var(--ink); padding: 6px; min-width: 0;
+  box-shadow: inset 2px 2px 0 var(--bevel-light), inset -2px -2px 0 var(--window-bottom), 4px 4px 0 rgba(8,10,34,.6) }
+/* ...the striped cream paper behind a fine dark edge, the class band on top. */
+.card .body { display: grid; gap: 8px; align-content: start; min-width: 0; padding: 0 12px 12px;
+  border: 2px solid var(--ink); color: var(--paper-text);
+  background: repeating-linear-gradient(180deg, transparent 0 2px, var(--paper-stripe) 2px 4px), var(--cream) }
+.card .body::before { content: ""; display: block; height: 14px; margin: 0 -12px 2px;
+  border-bottom: 2px solid var(--ink);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 70%, #fff) 0 2px, var(--accent) 2px calc(100% - 3px), var(--accent-deep) calc(100% - 3px)) }
+.card header { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center;
+  padding-bottom: 8px; border-bottom: 2px dotted var(--paper-dash) }
+.card h3 { margin: 0; font: 400 22px/1.1 var(--display); color: var(--paper-ink); letter-spacing: .01em; text-wrap: balance }
 .card .meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+/* A pill is a square label with a dark edge. */
 .card .meta > span { font: 800 11px/1 var(--body); text-transform: uppercase; letter-spacing: .07em;
-  padding: 4px 8px 3px; border-radius: 999px; border: 2px solid var(--line) }
-.card .rar { background: var(--rarity); color: #1F2340 }
+  padding: 4px 8px 3px; border: 2px solid var(--ink); background: var(--panel); color: var(--paper-ink) }
+/* The rarity: the card's square pip, in front of its name. */
+.card .rar { display: inline-flex; align-items: center; gap: 6px }
+.card .rar::before { content: ""; width: 9px; height: 9px; background: var(--rarity); outline: 2px solid var(--ink) }
 .r-common { --rarity: var(--common) } .r-uncommon { --rarity: var(--uncommon) } .r-rare { --rarity: var(--rare) }
-.r-uncommon .rar { color: #fff }
-/* A card already validated (definitivas.txt): a green chip and a green frame. */
-.card .final { background: var(--rog); color: #fff }
-.card.is-final { border-color: var(--rog); box-shadow: 0 5px 0 var(--rog-ink) }
-/* The cost: the enamel card's old chip — an ink disc with a
-   white inner ring and the number in white — and "PA" beside it. */
-.ap { display: inline-flex; align-items: center; gap: 5px; font: 800 12px/1 var(--body); color: var(--muted);
+/* A card already validated (definitivas.txt): a green label; the frame stays
+   the game's blue. */
+.card .meta > .final { background: var(--rog); color: #fff; text-shadow: 1px 1px 0 var(--ink) }
+/* The cost: the blue chip — a dark edge, a panel ring, the window inside. */
+.ap { display: inline-flex; align-items: center; gap: 5px; font: 800 12px/1 var(--body); color: var(--ink-soft);
   letter-spacing: .06em; white-space: nowrap }
 .ap b { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
-  background: #1F2340; box-shadow: inset 0 0 0 2px #1F2340, inset 0 0 0 4px #FFFFFF;
-  color: #FFFFFF; font: 400 17px/1 var(--display); letter-spacing: 0 }
-.desc { margin: 0; font-size: 15.5px; color: var(--body-ink); background: var(--cream); padding: 9px 11px;
-  border-radius: 12px; border: 2px solid var(--line) }
+  background: var(--window); box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--ink), 2px 3px 0 4px rgba(8,10,34,.45);
+  color: var(--text); font: 400 17px/1 var(--display); letter-spacing: 0; text-shadow: 1px 1px 0 var(--ink); margin: 4px }
+.intro .ap { color: var(--muted) }
+.desc { margin: 0; font-size: 15.5px; color: var(--paper-text) }
 /* A split card (two halves): each half its own chip, name and text, one above
    the other with a cut between them, like the card in the hand. */
-.card .split-tag { background: var(--accent-soft); color: var(--accent-ink) }
+.card .meta > .split-tag { background: var(--accent-soft); color: var(--accent-ink) }
 .half { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center }
-.half + .half { border-top: 2px dashed var(--line); padding-top: 8px }
-.half h4 { margin: 0; font: 400 18px/1.1 var(--display); color: var(--ink) }
+.half + .half { border-top: 2px dashed var(--paper-dash); padding-top: 8px }
+.half h4 { margin: 0; font: 400 18px/1.1 var(--display); color: var(--paper-ink) }
 .half .desc { grid-column: 1 / -1 }
 .kws { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font: 800 12px var(--body); text-transform: uppercase; letter-spacing: .06em }
 
-/* A status or keyword word: highlighted in the class' ink on its soft tint, like
-   on the card, and its explanation on hover, focus or tap. */
+/* A status or keyword word: in the class' ink on its soft tint, like on the
+   card, and its explanation in a small blue window on hover, focus or tap. */
 .term { position: relative; color: var(--accent-ink); background: var(--accent-soft); font-weight: 800;
-  padding: 0 4px; border-radius: 5px; cursor: help; outline: none }
+  padding: 0 4px; box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--accent-ink) 35%, transparent); cursor: help; outline: none }
 .term:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px }
 .tip { display: none; position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); z-index: 20;
-  width: max-content; max-width: min(280px, 80vw); padding: 9px 11px; border-radius: 12px;
-  background: var(--tip); color: var(--tip-ink); font: 600 13.5px/1.4 var(--body); border: 3px solid var(--line);
-  text-transform: none; letter-spacing: 0; text-align: left; box-shadow: 0 4px 0 rgba(31,35,64,.35) }
-.tip b { display: block; font: 400 16px var(--display); color: var(--tip-title); margin-bottom: 3px; letter-spacing: .02em }
+  width: max-content; max-width: min(280px, 80vw); padding: 9px 11px;
+  background: linear-gradient(180deg, var(--window-top), var(--window-bottom)); color: var(--text);
+  font: 600 13.5px/1.4 var(--body); border: 2px solid var(--bevel-dark);
+  text-transform: none; letter-spacing: 0; text-align: left; box-shadow: var(--raised), var(--drop) }
+.tip b { display: block; font: 400 16px var(--display); color: var(--title); margin-bottom: 3px; letter-spacing: .02em;
+  text-shadow: 2px 2px 0 var(--ink) }
 .term:hover .tip, .term:focus .tip { display: block }
 
-/* A status: its name, pills for its facts, and who names it. */
+/* A status: its name, labels for its facts, and who names it. */
 .card.status header { grid-template-columns: 1fr }
 .card .meta > .positive { background: var(--rog-soft); color: var(--rog-ink) }
 .card .meta > .negative { background: var(--war-soft); color: var(--war-ink) }
-.named { margin: 0; font-size: 13px; color: var(--muted) }
+.named { margin: 0; font-size: 13px; color: var(--ink-soft) }
 
-.empty { padding-block: 40px; color: var(--muted) }
-footer { padding-block: 40px; color: var(--muted); font-size: 13px }
-footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; border-radius: 5px; border: 1px solid var(--muted) }
+.empty { margin-top: 30px; padding: 16px 20px; color: var(--text);
+  background: linear-gradient(180deg, var(--window-top), var(--window-bottom));
+  border: 2px solid var(--bevel-dark); box-shadow: var(--raised), var(--drop) }
+.empty[hidden] { display: none }
+footer { padding-block: 40px; color: var(--panel); font-size: 13px; text-shadow: 1px 1px 0 var(--wood-deep) }
+footer code { font-size: 12px; background: var(--wood-deep); padding: 1px 5px; border: 1px solid var(--ink) }
 /* On a phone the bar wraps to a third of the screen: it scrolls away. */
 @media (max-width: 520px) { .bar { position: static } .bar input { flex: 1 1 100% } .pool { scroll-margin-top: 0 } }
 </style>
@@ -169,6 +194,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <body>
 
 <div class="wrap intro">
+ <div class="window">
   <h1>Cartas de Dices &amp; Tokens</h1>
   <p>Las 108 cartas del juego por clase, más las del estratega, que son del jugador y no necesitan ficha. Cada carta aparece con su coste en PA, su rareza y lo que hace. Pasa el ratón (o toca) por una palabra resaltada para ver qué hace ese estado, igual que en la partida. Al final están los 38 estados de ficha y los 16 de casilla, cada uno tal como se ve en el tablero.</p>
   <div class="how">
@@ -177,6 +203,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
     <span>Mano: se repone a 5 cartas</span>
     <span>Definitivas: 88 de 108</span>
   </div>
+ </div>
 </div>
 
 <div class="bar">
@@ -1860,7 +1887,7 @@ footer code { font-size: 12px; background: var(--cream); padding: 1px 5px; borde
 <p class="empty" id="none" hidden>Ninguna carta ni estado coincide con la búsqueda.</p>
 </main>
 
-<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>d3f34d6</code>.</footer>
+<footer class="wrap">Generado desde el catálogo del juego con <code>tools/card_atlas/build.py</code>, revisión <code>6139d8e</code>.</footer>
 
 <script>
 const q = document.getElementById('q');
